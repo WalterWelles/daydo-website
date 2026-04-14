@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DayDo — Post</title>
+  <!-- Open Graph meta tags (mis à jour dynamiquement par JS) -->
+  <meta property="og:title" content="Post sur DayDo" id="og-title" />
+  <meta property="og:description" content="Découvre ce post sur DayDo — l'app de défis photo quotidiens !" id="og-desc" />
+  <meta property="og:image" content="https://daydo.app/og-image.png" id="og-image" />
+  <meta property="og:url" content="https://daydo.app/post" id="og-url" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DayDo" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0d0d1a;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header {
+      width: 100%; max-width: 480px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 20px 12px;
+    }
+    .logo { font-size: 22px; font-weight: 800; color: #fff; letter-spacing: 1px; text-decoration: none; }
+    .logo span { color: #6366F1; }
+    .download-btn-small {
+      background: #6366F1; color: #fff; border: none;
+      border-radius: 20px; padding: 8px 18px;
+      font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none;
+    }
+    .container { width: 100%; max-width: 480px; padding: 0 16px 40px; flex: 1; }
+
+    /* ─── Loading ─── */
+    .loading { text-align: center; padding: 60px 20px; color: #A0A0B8; font-size: 15px; }
+    .loading-spinner { width: 32px; height: 32px; border: 3px solid #1a1a2e; border-top-color: #6366F1; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── Error ─── */
+    .error { text-align: center; padding: 60px 20px; }
+    .error-emoji { font-size: 48px; margin-bottom: 16px; }
+    .error-title { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .error-sub { font-size: 14px; color: #A0A0B8; line-height: 22px; }
+
+    /* ─── Post Card ─── */
+    .post-card {
+      background: #1a1a2e;
+      border-radius: 24px;
+      border: 1px solid #ffffff12;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .post-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 16px 12px;
+    }
+    .post-avatar {
+      width: 44px; height: 44px; border-radius: 14px;
+      background: #6366F120;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 800; color: #6366F1;
+      flex-shrink: 0;
+    }
+    .post-user-info { flex: 1; }
+    .post-username { font-size: 15px; font-weight: 700; }
+    .post-handle { font-size: 12px; color: #A0A0B8; margin-top: 2px; }
+    .post-streak {
+      background: #F59E0B18; color: #F59E0B;
+      border-radius: 12px; padding: 4px 10px;
+      font-size: 12px; font-weight: 700;
+    }
+
+    /* ─── Media ─── */
+    .post-media { width: 100%; position: relative; }
+    .post-media img { width: 100%; display: block; }
+    .post-media-audio {
+      width: 100%; height: 200px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #0d0d1a 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 12px;
+    }
+    .post-media-audio-initials { font-size: 48px; font-weight: 900; color: #fff; }
+    .post-media-audio-icon { font-size: 24px; }
+    .post-media-video-overlay {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.2);
+    }
+    .play-btn {
+      width: 56px; height: 56px; border-radius: 28px;
+      background: rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; color: #fff;
+    }
+
+    /* ─── Caption & Stats ─── */
+    .post-body { padding: 14px 16px 16px; }
+    .post-caption { font-size: 14px; line-height: 22px; margin-bottom: 12px; color: #E0E0F0; }
+    .post-stats {
+      display: flex; gap: 16px; align-items: center;
+    }
+    .post-stat {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 13px; font-weight: 600; color: #A0A0B8;
+    }
+    .post-stat-icon { font-size: 14px; }
+    .post-challenge {
+      display: inline-block;
+      background: #6366F115; color: #6366F1;
+      border-radius: 10px; padding: 4px 12px;
+      font-size: 12px; font-weight: 700;
+      margin-top: 12px;
+    }
+
+    /* ─── CTA ─── */
+    .cta-section { text-align: center; margin-top: 8px; }
+    .cta-btn {
+      display: inline-block;
+      background: #6366F1; color: #fff;
+      border-radius: 16px; padding: 16px 40px;
+      font-size: 16px; font-weight: 800;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .cta-btn:active { transform: scale(0.97); }
+    .cta-sub { font-size: 12px; color: #A0A0B8; margin-top: 10px; }
+
+    /* ─── Footer ─── */
+    .footer {
+      width: 100%; max-width: 480px;
+      text-align: center; padding: 24px 16px;
+      font-size: 12px; color: #A0A0B840;
+    }
+    .footer a { color: #6366F180; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <a href="https://daydo.app" class="logo">Day<span>Do</span></a>
+    <a href="https://daydo.app" class="download-btn-small">Télécharger</a>
+  </div>
+
+  <div class="container" id="content">
+    <div class="loading" id="loading">
+      <div class="loading-spinner"></div>
+      Chargement du post...
+    </div>
+  </div>
+
+  <div class="footer">
+    DayDo — Défis photo quotidiens<br />
+    <a href="https://daydo.app/terms.html">CGU</a> · <a href="https://daydo.app/privacy.html">Confidentialité</a>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://rrxxaesttwzrjyqciyhv.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJyeHhhZXN0dHd6cmp5cWNpeWh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwOTk5ODcsImV4cCI6MjA4ODY3NTk4N30.j-wKQzR7gIS7-FWdIKwU6sYYJ0FdDFO4pqwp5GIgYcM';
+
+    async function loadPost() {
+      const params = new URLSearchParams(window.location.search);
+      const postId = params.get('id');
+
+      if (!postId) {
+        showError('Post introuvable', 'Ce lien ne contient pas d\'identifiant de post.');
+        return;
+      }
+
+      try {
+        // Charger le post
+        const res = await fetch(
+          `${SUPABASE_URL}/rest/v1/posts?id=eq.${postId}&select=id,media_type,media_url,caption,points_earned,created_at,views_count,user_id,challenge_id,likes_count`,
+          { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+        );
+        const posts = await res.json();
+        if (!posts || posts.length === 0) {
+          showError('Post introuvable', 'Ce post n\'existe pas ou a été supprimé.');
+          return;
+        }
+        const post = posts[0];
+
+        // Charger le profil de l'auteur
+        let author = { name: 'Utilisateur', handle: '@inconnu', initials: '??', streak: 0 };
+        if (post.user_id) {
+          const ares = await fetch(
+            `${SUPABASE_URL}/rest/v1/profiles?id=eq.${post.user_id}&select=name,handle,initials,streak`,
+            { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+          );
+          const authors = await ares.json();
+          if (authors && authors.length > 0) author = authors[0];
+        }
+
+        // Charger le nombre de likes
+        const lres = await fetch(
+          `${SUPABASE_URL}/rest/v1/likes?post_id=eq.${postId}&select=id`,
+          { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'Prefer': 'count=exact', 'Range-Unit': 'items', 'Range': '0-0' } }
+        );
+        const likesCount = parseInt(lres.headers.get('content-range')?.split('/')[1] || '0');
+
+        // Charger le défi
+        let challengeTitle = '';
+        if (post.challenge_id) {
+          const cres = await fetch(
+            `${SUPABASE_URL}/rest/v1/challenges?id=eq.${post.challenge_id}&select=title`,
+            { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+          );
+          const chals = await cres.json();
+          if (chals && chals.length > 0) challengeTitle = chals[0].title;
+        }
+
+        // Update OG meta tags
+        document.getElementById('og-title').setAttribute('content', `Post de ${author.name} sur DayDo`);
+        document.getElementById('og-desc').setAttribute('content', post.caption || `Découvre le défi "${challengeTitle}" sur DayDo !`);
+        if (post.media_type !== 'audio' && post.media_url) {
+          document.getElementById('og-image').setAttribute('content', post.media_url);
+        }
+        document.getElementById('og-url').setAttribute('content', `https://daydo.app/post.html?id=${postId}`);
+        document.title = `${author.name} sur DayDo — ${challengeTitle || 'Post'}`;
+
+        // Render
+        renderPost(post, author, likesCount, challengeTitle);
+
+      } catch (e) {
+        showError('Erreur de chargement', 'Impossible de charger ce post. Réessaie plus tard.');
+      }
+    }
+
+    function renderPost(post, author, likes, challenge) {
+      const timeAgo = getTimeAgo(post.created_at);
+      const isAudio = post.media_type === 'audio';
+      const isVideo = post.media_type === 'video';
+
+      let mediaHtml = '';
+      if (isAudio) {
+        mediaHtml = `
+          <div class="post-media-audio">
+            <div class="post-media-audio-initials">${author.initials || '??'}</div>
+            <div class="post-media-audio-icon">🎵</div>
+          </div>`;
+      } else if (isVideo) {
+        mediaHtml = `
+          <div class="post-media" style="position:relative;">
+            <img src="${post.media_url}" alt="Post vidéo" onerror="this.style.display='none'" />
+            <div class="post-media-video-overlay">
+              <div class="play-btn">▶</div>
+            </div>
+          </div>`;
+      } else {
+        mediaHtml = `
+          <div class="post-media">
+            <img src="${post.media_url}" alt="Post photo" />
+          </div>`;
+      }
+
+      document.getElementById('content').innerHTML = `
+        <div class="post-card">
+          <div class="post-header">
+            <div class="post-avatar">${author.initials || '??'}</div>
+            <div class="post-user-info">
+              <div class="post-username">${author.name || 'Utilisateur'}</div>
+              <div class="post-handle">${author.handle || '@inconnu'} · ${timeAgo}</div>
+            </div>
+            ${author.streak > 0 ? `<div class="post-streak">🔥 ${author.streak}j</div>` : ''}
+          </div>
+          ${mediaHtml}
+          <div class="post-body">
+            ${post.caption ? `<div class="post-caption">${escapeHtml(post.caption)}</div>` : ''}
+            <div class="post-stats">
+              <div class="post-stat"><span class="post-stat-icon">❤️</span> ${formatCount(likes)}</div>
+              <div class="post-stat"><span class="post-stat-icon">👁</span> ${formatCount(post.views_count || 0)}</div>
+              ${isAudio ? '<div class="post-stat"><span class="post-stat-icon">🎵</span> Audio</div>' : ''}
+              ${isVideo ? '<div class="post-stat"><span class="post-stat-icon">🎬</span> Vidéo</div>' : ''}
+            </div>
+            ${challenge ? `<div class="post-challenge">🏆 ${escapeHtml(challenge)}</div>` : ''}
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <a href="https://daydo.app" class="cta-btn">Rejoindre DayDo 🚀</a>
+          <p class="cta-sub">Relève des défis photo quotidiens et gagne des récompenses</p>
+        </div>
+      `;
+    }
+
+    function showError(title, sub) {
+      document.getElementById('content').innerHTML = `
+        <div class="error">
+          <div class="error-emoji">📭</div>
+          <div class="error-title">${title}</div>
+          <div class="error-sub">${sub}</div>
+        </div>
+        <div class="cta-section" style="margin-top:32px;">
+          <a href="https://daydo.app" class="cta-btn">Découvrir DayDo 🚀</a>
+        </div>
+      `;
+    }
+
+    function getTimeAgo(date) {
+      const d = Math.floor((Date.now() - new Date(date).getTime()) / 60000);
+      if (d < 1) return "À l'instant";
+      if (d < 60) return `Il y a ${d} min`;
+      if (d < 1440) return `Il y a ${Math.floor(d / 60)}h`;
+      return `Il y a ${Math.floor(d / 1440)}j`;
+    }
+
+    function formatCount(n) {
+      if (!n) return '0';
+      return n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n);
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    // Launch
+    loadPost();
+  </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "app.daydo.challenge",
+    "sha256_cert_fingerprints": ["8E:7F:79:20:21:AD:3B:F2:33:E9:8B:45:2A:83:0A:21:9E:4B:6E:14:6C:3B:6A:57:25:53:66:FC:4F:C9:3E:63"]
+  }
+}]

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://daydo.app/">
+<title>DayDo — Relève le défi du jour</title>
+<meta name="description" content="DayDo : un défi créatif chaque jour. Photo, vidéo ou audio. Gagne des points, construis ton streak et monte dans le classement mensuel.">
+<meta name="theme-color" content="#6366F1">
+<meta property="og:title" content="DayDo — Relève le défi du jour">
+<meta property="og:description" content="Un défi créatif chaque jour. Photo, vidéo ou audio. Gagne des points et monte dans le classement.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://daydo.app">
+<meta property="og:image" content="https://daydo.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="apple-itunes-app" content="app-id=6760622187">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+// Redirection automatique vers le store selon l'OS
+(function() {
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPhone|iPad|iPod/i.test(ua);
+  var isAndroid = /Android/i.test(ua);
+  var path = window.location.pathname;
+  // Rediriger /download vers le bon store
+  if (path === '/download') {
+    if (isIOS) window.location.href = 'https://apps.apple.com/app/daydo/id6760622187';
+    else if (isAndroid) window.location.href = 'https://play.google.com/store/apps/details?id=app.daydo.challenge';
+  }
+})();
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#6366F1;--accent-light:#818CF8;--bg:#06060c;--surface:#111118;--surface2:#1a1a24;--border:rgba(255,255,255,0.06);--text:#fff;--text2:rgba(255,255,255,0.6);--text3:rgba(255,255,255,0.35);--radius:16px}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,12,0.85);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:20px}
+.nav-logo span{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;background:var(--accent);font-size:13px;letter-spacing:-0.5px}
+.nav-links{display:flex;gap:28px;font-size:14px;font-weight:500;color:var(--text2)}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{padding:8px 20px;border-radius:10px;background:var(--accent);font-weight:700;font-size:13px;color:#fff;transition:transform 0.2s}
+.nav-cta:hover{transform:scale(1.04)}
+@media(max-width:640px){.nav-links{display:none}}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,0.12) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:100px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.15);font-size:12px;font-weight:600;color:var(--accent-light);letter-spacing:0.5px;margin-bottom:28px;animation:fadeUp 0.6s ease-out}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#22C55E;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{font-size:clamp(36px,7vw,72px);font-weight:900;line-height:1.05;letter-spacing:-2px;margin-bottom:20px;animation:fadeUp 0.6s ease-out 0.1s both}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent-light),#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:clamp(15px,2vw,20px);color:var(--text2);max-width:560px;line-height:1.6;margin-bottom:36px;animation:fadeUp 0.6s ease-out 0.2s both}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;animation:fadeUp 0.6s ease-out 0.3s both}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:14px;font-weight:700;font-size:15px;transition:transform 0.2s,box-shadow 0.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 4px 24px rgba(99,102,241,0.3)}
+.btn-secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.hero-stats{display:flex;gap:40px;margin-top:56px;animation:fadeUp 0.6s ease-out 0.4s both}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:36px;font-weight:900;background:linear-gradient(135deg,var(--accent-light),#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-stat-label{font-size:12px;color:var(--text3);margin-top:4px;font-weight:500}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.section{padding:80px 24px;max-width:1000px;margin:0 auto}
+.section-label{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.12);font-size:11px;font-weight:600;color:var(--accent-light);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.section h2{font-size:clamp(24px,4vw,40px);font-weight:900;letter-spacing:-1px;margin-bottom:16px}
+.section>p{color:var(--text2);font-size:16px;max-width:540px;line-height:1.6;margin-bottom:48px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:border-color 0.3s,transform 0.3s}
+.feature-card:hover{border-color:rgba(99,102,241,0.2);transform:translateY(-4px)}
+.feature-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.feature-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.feature-card p{font-size:13px;color:var(--text2);line-height:1.6}
+
+.steps{display:flex;flex-direction:column;gap:0;position:relative;padding-left:40px}
+.steps::before{content:'';position:absolute;left:15px;top:24px;bottom:24px;width:2px;background:linear-gradient(to bottom,var(--accent),rgba(99,102,241,0.1))}
+.step{display:flex;align-items:flex-start;gap:20px;padding:24px 0;position:relative}
+.step-num{position:absolute;left:-40px;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;z-index:1}
+.step h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.step p{font-size:13px;color:var(--text2);line-height:1.6}
+
+.points-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:24px}
+.points-table th{text-align:left;padding:10px 14px;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text3);border-bottom:1px solid var(--border)}
+.points-table td{padding:10px 14px;border-bottom:1px solid var(--border)}
+.points-table tr:last-child td{border-bottom:none}
+.points-table .pts{color:var(--accent-light);font-weight:700}
+
+.info-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-top:24px}
+.info-box h3{font-size:17px;font-weight:700;margin-bottom:12px}
+.info-box p{font-size:13px;color:var(--text2);line-height:1.7}
+.info-box ul{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:10px}
+.info-box li{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2)}
+
+.boost-box{background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(244,114,182,0.08));border:1px solid rgba(99,102,241,0.15);border-radius:var(--radius);padding:28px;margin-top:24px}
+.boost-box h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.boost-box p{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:16px}
+.boost-table{width:100%;border-collapse:collapse;font-size:13px}
+.boost-table td{padding:8px 14px;border-bottom:1px solid var(--border)}
+.boost-table tr:last-child td{border-bottom:none}
+.boost-table .mult{color:#f472b6;font-weight:800}
+
+.cta-section{text-align:center;padding:80px 24px 100px}
+.cta-section h2{font-size:clamp(24px,4vw,40px);font-weight:900;letter-spacing:-1px;margin-bottom:12px}
+.cta-section p{color:var(--text2);font-size:16px;margin-bottom:32px}
+.store-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.store-btn{display:flex;align-items:center;gap:12px;padding:14px 24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;transition:border-color 0.3s,transform 0.2s}
+.store-btn:hover{border-color:var(--accent);transform:translateY(-2px)}
+.store-btn-icon{font-size:28px}
+.store-btn-text{text-align:left}
+.store-btn-label{font-size:11px;color:var(--text3)}
+.store-btn-name{font-size:16px;font-weight:700}
+
+footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center}
+.footer-inner{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:16px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;font-size:13px;color:var(--text3)}
+.footer-links a:hover{color:var(--text2)}
+.footer-copy{font-size:12px;color:var(--text3)}
+
+@media(max-width:640px){
+  .hero-stats{flex-direction:row;gap:24px}
+  .hero-stat-num{font-size:28px}
+  .features-grid{grid-template-columns:1fr}
+  .store-buttons{flex-direction:column;align-items:center}
+  .points-table{font-size:12px}
+  .points-table th,.points-table td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><span>DD</span> Day<span style="color:var(--accent)">Do</span></a>
+  <div class="nav-links">
+    <a href="#features">Fonctionnalités</a>
+    <a href="#how">Comment ça marche</a>
+    <a href="#points">Points</a>
+    <a href="/ranking.html">Classement</a>
+    <a href="/faq.html">FAQ</a>
+  </div>
+  <a href="#download" class="nav-cta">Télécharger</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">Disponible sur iOS &amp; Android</div>
+  <h1>Un défi. <em>Chaque jour.</em></h1>
+  <p>Participe au défi du jour en photo, vidéo ou audio. Gagne des points, construis ton streak, défie tes amis et monte dans le classement mensuel.</p>
+  <div class="hero-buttons">
+    <a href="https://play.google.com/store/apps/details?id=app.daydo.challenge" class="btn btn-primary">🤖 Google Play</a>
+    <a href="https://apps.apple.com/app/daydo/id6760622187" class="btn btn-secondary">📱 App Store</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">1</div><div class="hero-stat-label">Défi par jour</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label">Formats</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">90</div><div class="hero-stat-label">Niveaux</div></div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="section-label">Fonctionnalités</div>
+  <h2>Tout pour rester motivé</h2>
+  <p>DayDo transforme chaque journée en opportunité créative. Défis, compétition et communauté.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(59,130,246,0.1)">📸</div>
+      <h3>Défi du jour</h3>
+      <p>Un nouveau défi chaque matin. Photo, vidéo ou audio. Jusqu'à 2 participations par jour.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(239,68,68,0.1)">🔥</div>
+      <h3>Streak &amp; Points</h3>
+      <p>Enchaîne les jours pour multiplier tes bonus. De +10 à +200 points selon ton streak.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(245,158,11,0.1)">🏆</div>
+      <h3>Classement mensuel</h3>
+      <p>Grimpe le classement et décroche la récompense du mois. Reset chaque mois.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(34,197,94,0.1)">💬</div>
+      <h3>Communauté</h3>
+      <p>Like, commente, vote créativité et partage. Chaque interaction rapporte des points.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(236,72,153,0.1)">⚔️</div>
+      <h3>Duels 1v1</h3>
+      <p>Défie un joueur. Le gagnant remporte 10% des points du jour du perdant.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(139,92,246,0.1)">🛡️</div>
+      <h3>Joker mensuel</h3>
+      <p>Rate un jour sans casser ton streak. Renouvelé chaque mois automatiquement.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(6,182,212,0.1)">🎯</div>
+      <h3>Défi bonus</h3>
+      <p>Défis flash avec points dégressifs. Plus tu es rapide, plus tu gagnes.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(251,146,60,0.1)">🎨</div>
+      <h3>Vote créativité</h3>
+      <p>Vote pour les posts créatifs. 10 votes max par semaine. Points bonus au créateur.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(168,85,247,0.1)">🚀</div>
+      <h3>Boost nouveau joueur</h3>
+      <p>Multiplicateur x2.5 au départ. Diminue à mesure que tu montes. Top 8 = normal.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="section-label">Comment ça marche</div>
+  <h2>Simple comme bonjour</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div><h3>Découvre le défi</h3><p>Chaque matin, un nouveau défi créatif t'attend. Photo, vidéo ou audio.</p></div></div>
+    <div class="step"><div class="step-num">2</div><div><h3>Participe</h3><p>Filme une vidéo (30s max), prends une photo ou enregistre un audio directement depuis l'app.</p></div></div>
+    <div class="step"><div class="step-num">3</div><div><h3>Gagne des points</h3><p>Photo = 10 pts, Vidéo = 20 pts, Audio = 10 pts. Bonus early bird, combo et streak.</p></div></div>
+    <div class="step"><div class="step-num">4</div><div><h3>Interagis</h3><p>Like, commente et vote créativité. Chaque interaction rapporte des points.</p></div></div>
+    <div class="step"><div class="step-num">5</div><div><h3>Monte au classement</h3><p>Accumule des points tout le mois. Le n°1 remporte la récompense mensuelle.</p></div></div>
+  </div>
+</section>
+
+<section class="section" id="points">
+  <div class="section-label">Système de points</div>
+  <h2>Comment gagner des points</h2>
+  <p>Chaque action rapporte des points. Voici le détail.</p>
+
+  <table class="points-table">
+    <thead><tr><th>Action</th><th>Points</th><th>Limite</th></tr></thead>
+    <tbody>
+      <tr><td>📸 Post photo</td><td class="pts">+10</td><td>2/jour</td></tr>
+      <tr><td>🎬 Post vidéo (30s)</td><td class="pts">+20</td><td>2/jour</td></tr>
+      <tr><td>🎤 Post audio</td><td class="pts">+10</td><td>2/jour</td></tr>
+      <tr><td>🌅 Early bird (&lt;9h)</td><td class="pts">+5</td><td>par post</td></tr>
+      <tr><td>🎯 Combo média</td><td class="pts">+5</td><td>1/jour</td></tr>
+      <tr><td>❤️ Like donné</td><td class="pts">+0.5</td><td>20/jour</td></tr>
+      <tr><td>⭐ 1er à liker</td><td class="pts">+2</td><td>5/jour</td></tr>
+      <tr><td>💬 Commentaire</td><td class="pts">+1</td><td>10/jour</td></tr>
+      <tr><td>⭐ 1er à commenter</td><td class="pts">+2</td><td>5/jour</td></tr>
+      <tr><td>❤️ Like reçu</td><td class="pts">+0.5</td><td>30/jour</td></tr>
+      <tr><td>💬 Commentaire reçu</td><td class="pts">+1</td><td>10/jour</td></tr>
+      <tr><td>🔥 Streak 3-30j</td><td class="pts">+10 à +200</td><td>7 paliers</td></tr>
+      <tr><td>🤝 Parrainage</td><td class="pts">+10</td><td>illimité</td></tr>
+    </tbody>
+  </table>
+
+  <div class="boost-box">
+    <h3>🚀 Boost dégressif</h3>
+    <p>Les nouveaux joueurs ont un multiplicateur sur tous leurs points. Plus tu montes, plus il diminue.</p>
+    <table class="boost-table">
+      <tr><td>Hors top 30</td><td class="mult">x2.5</td></tr>
+      <tr><td>21e - 30e</td><td class="mult">x2.0</td></tr>
+      <tr><td>16e - 20e</td><td class="mult">x1.8</td></tr>
+      <tr><td>11e - 15e</td><td class="mult">x1.5</td></tr>
+      <tr><td>9e - 10e</td><td class="mult">x1.2</td></tr>
+      <tr><td>Top 8</td><td class="mult">x1.0</td></tr>
+    </table>
+  </div>
+
+  <div class="info-box">
+    <h3>⚔️ Duels</h3>
+    <p>Défie un joueur en 1v1. Le gagnant prend 10% des points du jour du perdant. Égalité = +10 pts chacun.</p>
+    <ul>
+      <li>⚔️ 3 duels acceptés max par jour</li>
+      <li>⚔️ 1h pour accepter un défi</li>
+      <li>⚔️ Résolution à 23h55</li>
+      <li>⚔️ Plusieurs duels simultanés possibles</li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta-section" id="download">
+  <h2>Prêt à relever le défi ? 🎯</h2>
+  <p>Télécharge DayDo gratuitement et rejoins la communauté.</p>
+  <div class="store-buttons">
+    <a href="https://play.google.com/store/apps/details?id=app.daydo.challenge" class="store-btn">
+      <div class="store-btn-icon">🤖</div>
+      <div class="store-btn-text"><div class="store-btn-label">Disponible sur</div><div class="store-btn-name">Google Play</div></div>
+    </a>
+    <a href="https://apps.apple.com/app/daydo/id6760622187" class="store-btn">
+      <div class="store-btn-icon">📱</div>
+      <div class="store-btn-text"><div class="store-btn-label">Disponible sur</div><div class="store-btn-name">App Store</div></div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="nav-logo"><span>DD</span> Day<span style="color:var(--accent)">Do</span></div>
+    <div class="footer-links">
+      <a href="/ranking.html">Classement</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/terms.html">CGU</a>
+      <a href="/privacy.html">Confidentialité</a>
+      <a href="/legal.html">Mentions légales</a>
+      <a href="/delete-account.html">Supprimer mon compte</a>
+      <a href="mailto:contact@daydo.app">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 DayDo — Tous droits réservés</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "5B39YZW32A.app.daydo.challenge",
+        "paths": [
+          "/post/*",
+          "/ranking",
+          "/ranking/*",
+          "/profile/*",
+          "/challenge/*",
+          "/invite/*"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "5B39YZW32A.app.daydo.challenge"
+    ]
+  }
+}

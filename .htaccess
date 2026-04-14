@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^download$ /download/ [R=301,L]
+RewriteRule ^post/(.+)$ /post/index.html [L]
