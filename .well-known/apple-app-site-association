@@ -8,6 +8,8 @@
           "/post/*",
           "/ranking",
           "/ranking/*",
+          "/duels",
+          "/duels/*",
           "/profile/*",
           "/challenge/*",
           "/invite/*"

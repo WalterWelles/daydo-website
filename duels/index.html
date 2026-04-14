@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DayDo — Duels</title>
+<meta property="og:title" content="Duels DayDo">
+<meta property="og:description" content="Découvre les duels sur DayDo — défie tes amis en 1v1 !">
+<meta property="og:image" content="https://daydo.app/og-image.png">
+<meta name="apple-itunes-app" content="app-id=6760622187">
+<script>
+var fallback = setTimeout(function() { document.getElementById('content').style.display = 'flex'; }, 1500);
+window.addEventListener('blur', function() { clearTimeout(fallback); });
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#06060c;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center}
+#content{display:none;flex-direction:column;align-items:center;text-align:center;padding:40px 24px;gap:24px}
+.logo{font-weight:900;font-size:24px}
+.logo span{color:#6366F1}
+h1{font-size:28px;font-weight:900}
+p{color:rgba(255,255,255,0.6);font-size:16px;max-width:400px}
+.btn{display:inline-block;padding:14px 24px;border-radius:14px;font-weight:700;font-size:15px;text-decoration:none;margin:4px}
+.btn-primary{background:#6366F1;color:#fff}
+.btn-secondary{background:#1a1a24;color:#fff;border:1px solid rgba(255,255,255,0.06)}
+.loading{color:rgba(255,255,255,0.4);font-size:14px}
+</style>
+</head>
+<body>
+<p class="loading" id="loading">Ouverture de DayDo...</p>
+<div id="content">
+  <div class="logo">Day<span>Do</span></div>
+  <h1>⚔️ Duels</h1>
+  <p>Défie tes amis en 1v1 sur DayDo ! Le gagnant remporte les points du perdant.</p>
+  <div>
+    <a href="https://apps.apple.com/app/daydo/id6760622187" class="btn btn-primary">📱 App Store</a>
+    <a href="https://play.google.com/store/apps/details?id=app.daydo.challenge" class="btn btn-secondary">🤖 Google Play</a>
+  </div>
+</div>
+<script>setTimeout(function(){document.getElementById('loading').style.display='none';document.getElementById('content').style.display='flex';},3000);</script>
+</body>
+</html>
