@@ -12,19 +12,20 @@
 <meta name="apple-itunes-app" content="app-id=6760622187">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <script>
-// Essayer d'ouvrir l'app via Universal Link / App Link
-var postId = window.location.pathname.split('/post/')[1];
-if (postId) {
-  // iOS Universal Link / Android App Link
-  var appUrl = 'https://daydo.app/post/' + postId;
-  var fallbackTimeout = setTimeout(function() {
-    // L'app ne s'est pas ouverte — afficher la page
-    document.getElementById('content').style.display = 'flex';
-  }, 1500);
+// Tenter d'ouvrir l'app via deep link scheme
+var path = window.location.pathname;
+var deeplink = 'daydo:/' + path + window.location.hash;
 
-  // Si l'app s'ouvre, cette page sera en background
-  window.addEventListener('blur', function() { clearTimeout(fallbackTimeout); });
-}
+// Tenter d'ouvrir l'app
+window.location.href = deeplink;
+
+// Si l'app ne s'ouvre pas après 2s, afficher la page
+var fallback = setTimeout(function() {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('content').style.display = 'flex';
+}, 2000);
+window.addEventListener('blur', function() { clearTimeout(fallback); });
+document.addEventListener('visibilitychange', function() { if (document.hidden) clearTimeout(fallback); });
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
