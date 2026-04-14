@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DayDo — Voir le post</title>
+<meta name="theme-color" content="#6366F1">
+<meta property="og:title" content="DayDo — Voir ce défi">
+<meta property="og:description" content="Rejoins DayDo et relève des défis créatifs chaque jour !">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://daydo.app/og-image.png">
+<meta name="apple-itunes-app" content="app-id=6760622187">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+// Essayer d'ouvrir l'app via Universal Link / App Link
+var postId = window.location.pathname.split('/post/')[1];
+if (postId) {
+  // iOS Universal Link / Android App Link
+  var appUrl = 'https://daydo.app/post/' + postId;
+  var fallbackTimeout = setTimeout(function() {
+    // L'app ne s'est pas ouverte — afficher la page
+    document.getElementById('content').style.display = 'flex';
+  }, 1500);
+
+  // Si l'app s'ouvre, cette page sera en background
+  window.addEventListener('blur', function() { clearTimeout(fallbackTimeout); });
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:#06060c;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center}
+#content{display:none;flex-direction:column;align-items:center;text-align:center;padding:40px 24px;gap:24px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:24px}
+.logo span{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:#6366F1;font-size:15px}
+h1{font-size:28px;font-weight:900;letter-spacing:-1px}
+h1 em{font-style:normal;background:linear-gradient(135deg,#818CF8,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+p{color:rgba(255,255,255,0.6);font-size:16px;line-height:1.5;max-width:400px}
+.buttons{display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:14px;font-weight:700;font-size:15px;text-decoration:none;transition:transform 0.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:#6366F1;color:#fff}
+.btn-secondary{background:#1a1a24;color:#fff;border:1px solid rgba(255,255,255,0.06)}
+.loading{color:rgba(255,255,255,0.4);font-size:14px}
+</style>
+</head>
+<body>
+
+<p class="loading" id="loading">Ouverture de DayDo...</p>
+
+<div id="content">
+  <div class="logo"><span>DD</span> Day<span style="color:#6366F1">Do</span></div>
+  <h1>Voir ce <em>défi</em></h1>
+  <p>Ce post est sur DayDo. Télécharge l'app pour le voir et relever des défis créatifs chaque jour.</p>
+  <div class="buttons">
+    <a href="https://apps.apple.com/app/daydo/id6760622187" class="btn btn-primary">📱 App Store</a>
+    <a href="https://play.google.com/store/apps/details?id=app.daydo.challenge" class="btn btn-secondary">🤖 Google Play</a>
+  </div>
+</div>
+
+<script>
+// Si pas de postId, afficher directement
+if (!postId) {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('content').style.display = 'flex';
+}
+// Fallback après 3s dans tous les cas
+setTimeout(function() {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('content').style.display = 'flex';
+}, 3000);
+</script>
+
+</body>
+</html>
