@@ -51,7 +51,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:fl
 .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#22C55E;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 .hero h1{font-size:clamp(36px,7vw,72px);font-weight:900;line-height:1.05;letter-spacing:-2px;margin-bottom:20px;animation:fadeUp 0.6s ease-out 0.1s both}
-.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent-light),#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent-light),#f472b6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 .hero p{font-size:clamp(15px,2vw,20px);color:var(--text2);max-width:560px;line-height:1.6;margin-bottom:36px;animation:fadeUp 0.6s ease-out 0.2s both}
 .hero-buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;animation:fadeUp 0.6s ease-out 0.3s both}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:14px;font-weight:700;font-size:15px;transition:transform 0.2s,box-shadow 0.2s}
@@ -60,7 +60,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:fl
 .btn-secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
 .hero-stats{display:flex;gap:40px;margin-top:56px;animation:fadeUp 0.6s ease-out 0.4s both}
 .hero-stat{text-align:center}
-.hero-stat-num{font-size:36px;font-weight:900;background:linear-gradient(135deg,var(--accent-light),#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-stat-num{font-size:36px;font-weight:900;background:linear-gradient(135deg,var(--accent-light),#f472b6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 .hero-stat-label{font-size:12px;color:var(--text3);margin-top:4px;font-weight:500}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
