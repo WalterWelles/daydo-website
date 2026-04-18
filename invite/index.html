@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rejoins DayDo</title>
+<meta property="al:ios:url" content="daydo://invite">
+<meta property="al:ios:app_store_id" content="6760622187">
+<meta property="al:ios:app_name" content="DayDo">
+<meta property="al:android:url" content="daydo://invite">
+<meta property="al:android:package" content="app.daydo.challenge">
+<meta property="al:android:app_name" content="DayDo">
+<meta property="al:web:url" content="https://daydo.app">
+<style>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#0a0514;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;text-align:center}
+h1{font-size:28px;margin-bottom:8px;font-weight:800}
+p{color:rgba(255,255,255,0.7);font-size:15px;margin-bottom:24px}
+.btn{display:inline-block;background:#8B5CF6;color:#fff;padding:14px 28px;border-radius:14px;text-decoration:none;font-weight:800;font-size:16px;margin-top:8px}
+.btn:hover{background:#7C3AED}
+.logo{font-size:48px;margin-bottom:16px}
+</style>
+</head>
+<body>
+<div class="logo">🎯</div>
+<h1>Rejoins DayDo</h1>
+<p>Redirection vers l'application...</p>
+<a href="https://daydo.app" class="btn" id="manualBtn">Ouvrir manuellement</a>
+<script>
+(function(){
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPhone|iPad|iPod/i.test(ua);
+  var isAndroid = /Android/i.test(ua);
+
+  if (isIOS) {
+    // Essaie d'ouvrir l'app via universal link, sinon App Store après 1.5s
+    var start = Date.now();
+    window.location.href = 'daydo://invite';
+    setTimeout(function(){
+      if (Date.now() - start < 2000 && !document.hidden) {
+        window.location.href = 'https://apps.apple.com/app/daydo/id6760622187';
+      }
+    }, 1500);
+    document.getElementById('manualBtn').href = 'https://apps.apple.com/app/daydo/id6760622187';
+  } else if (isAndroid) {
+    // Sur Android, on tente le scheme custom via intent:// (fallback vers Play Store)
+    var start = Date.now();
+    window.location.href = 'intent://invite#Intent;scheme=daydo;package=app.daydo.challenge;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dapp.daydo.challenge;end';
+    setTimeout(function(){
+      if (Date.now() - start < 2500 && !document.hidden) {
+        window.location.href = 'https://play.google.com/store/apps/details?id=app.daydo.challenge';
+      }
+    }, 2000);
+    document.getElementById('manualBtn').href = 'https://play.google.com/store/apps/details?id=app.daydo.challenge';
+  } else {
+    // Desktop : renvoie vers la landing
+    setTimeout(function(){ window.location.href = 'https://daydo.app'; }, 1000);
+  }
+})();
+</script>
+</body>
+</html>
