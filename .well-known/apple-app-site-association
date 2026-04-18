@@ -12,6 +12,7 @@
           "/duels/*",
           "/profile/*",
           "/challenge/*",
+          "/invite",
           "/invite/*"
         ]
       }
