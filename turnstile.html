@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Vérification — DayDo</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(180deg, #2d1b69 0%, #0a0514 100%);
+      color: white; padding: 20px; box-sizing: border-box; text-align: center;
+    }
+    h1 { font-size: 20px; font-weight: 800; margin: 0 0 8px; }
+    p { font-size: 14px; opacity: 0.75; margin: 0 0 32px; }
+    #widget { margin-bottom: 24px; min-height: 65px; }
+    .spinner {
+      border: 3px solid rgba(255,255,255,0.15); border-top: 3px solid #fff;
+      border-radius: 50%; width: 28px; height: 28px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error { color: #ff6b6b; font-size: 13px; margin-top: 16px; }
+    .retry {
+      margin-top: 20px; background: #fff; color: #2d1b69; border: none;
+      padding: 10px 20px; border-radius: 999px; font-weight: 700; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vérification</h1>
+  <p>On s'assure que tu n'es pas un robot…</p>
+  <div id="widget"></div>
+  <div class="spinner" id="spinner"></div>
+  <div class="error" id="error"></div>
+  <button class="retry" id="retry" style="display:none" onclick="location.reload()">Réessayer</button>
+
+  <script>
+    const SCHEME = 'daydo';
+    const SITE_KEY = '0x4AAAAAADArEh0Z43R9m8XL';
+
+    function redirect(params) {
+      const qs = new URLSearchParams(params).toString();
+      window.location.href = SCHEME + '://turnstile?' + qs;
+    }
+
+    function onSuccess(token) {
+      document.getElementById('spinner').style.display = 'none';
+      redirect({ token });
+    }
+
+    function onError(code) {
+      document.getElementById('spinner').style.display = 'none';
+      document.getElementById('error').textContent = 'Vérification impossible (' + code + ')';
+      document.getElementById('retry').style.display = 'inline-block';
+    }
+
+    window.onloadTurnstileCallback = function () {
+      turnstile.render('#widget', {
+        sitekey: SITE_KEY,
+        callback: onSuccess,
+        'error-callback': (e) => onError(e || 'error'),
+        'expired-callback': () => onError('expired'),
+        'timeout-callback': () => onError('timeout'),
+        theme: 'dark',
+      });
+    };
+  </script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" async defer></script>
+</body>
+</html>
