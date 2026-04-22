@@ -28,7 +28,7 @@ ul{list-style:disc;padding-left:20px;margin-bottom:12px}
 <div class="wrap">
 <a href="/" class="back">← Retour à DayDo</a>
 <h1>Politique de Confidentialité</h1>
-<div class="meta">📅 Dernière mise à jour : 20 mars 2026</div>
+<div class="meta">📅 Dernière mise à jour : 22 avril 2026</div>
 
 <h2>1. Présentation</h2>
 <p>DayDo est une application mobile de défis quotidiens créatifs permettant aux utilisateurs de partager des photos, vidéos et enregistrements audio, d'interagir avec une communauté, et de participer à un classement mensuel.</p>
@@ -97,33 +97,37 @@ ul{list-style:disc;padding-left:20px;margin-bottom:12px}
 <li><strong>Intérêt légitime</strong> : pour la sécurité, la prévention des abus et l'amélioration du service</li>
 </ul>
 
-<h2>6. Hébergement et transfert des données</h2>
-<p>Vos données sont hébergées sur des serveurs gérés par Supabase, sur l'infrastructure Amazon Web Services (AWS), dans une région européenne (Union Européenne).</p>
-<p>Ces serveurs sont soumis au droit européen et à la réglementation RGPD.</p>
-<p>Les fichiers médias (photos, vidéos, audios) sont stockés de manière sécurisée sur ces mêmes serveurs européens via Supabase Storage.</p>
+<h2>6. Hébergement principal</h2>
+<p>La base de données, l'authentification et les fichiers médias (photos, vidéos, audios) sont hébergés par <strong>Supabase</strong> sur l'infrastructure Amazon Web Services, dans une région européenne (Irlande, UE). Ces serveurs sont soumis au droit européen et à la réglementation RGPD.</p>
+
+<h2>7. Sous-traitants et transferts des données</h2>
+<p>Pour fournir le service DayDo, nous faisons appel aux sous-traitants qualifiés listés ci-dessous, chacun dans le cadre strict de sa mission. Tous ont signé un accord de traitement des données (DPA) conforme au RGPD.</p>
+
+<ul>
+<li><strong>Supabase</strong> (Irlande, UE) — base de données, authentification, stockage fichiers. Droit européen directement applicable.</li>
+<li><strong>Cloudflare</strong> (Europe + États-Unis) — hébergement du site daydo.app (Pages), protection anti-bot au signup (Turnstile), hébergement et diffusion des vidéos (Stream), DNS. Transfert hors UE encadré par les clauses contractuelles types de la Commission européenne et le DPA Cloudflare.</li>
+<li><strong>SightEngine</strong> (Europe + États-Unis) — modération automatique des photos et vidéos publiées. Transfert hors UE encadré par les clauses contractuelles types.</li>
+<li><strong>PostHog</strong> (Francfort, Allemagne — UE) — analyse d'usage de l'application (retention, parcours utilisateur, détection de bugs produit) avec identifiants pseudonymisés. Droit européen directement applicable.</li>
+<li><strong>Brevo</strong> (France, UE) — envoi des emails transactionnels (confirmation d'inscription, réinitialisation de mot de passe, notifications importantes). Droit européen directement applicable.</li>
+<li><strong>Sentry</strong> (États-Unis) — détection et analyse des erreurs techniques dans l'application. Transfert encadré par les clauses contractuelles types.</li>
+<li><strong>Expo</strong> (États-Unis) — envoi des notifications push iOS et Android. Transfert encadré par les clauses contractuelles types.</li>
+<li><strong>Apple App Store & Google Play Store</strong> (États-Unis) — distribution de l'application. Transfert encadré par les clauses contractuelles types.</li>
+</ul>
+
 <div class="highlight">
-<p><strong>Transfert hors UE :</strong> L'analyse de modération des images est effectuée par SightEngine (serveurs aux États-Unis et en Europe). Ce transfert est encadré par les clauses contractuelles types de la Commission européenne. Aucune autre donnée personnelle n'est transférée hors de l'Union Européenne.</p>
+<p><strong>DayDo ne vend, ne loue et ne cède jamais</strong> vos données personnelles à des tiers à des fins commerciales ou publicitaires. Les données peuvent être transmises à une autorité compétente uniquement sur réquisition légale ou pour protéger les droits, la propriété ou la sécurité de DayDo et de ses utilisateurs.</p>
 </div>
 
-<h2>7. Durée de conservation</h2>
+<h2>8. Durée de conservation</h2>
 <ul>
 <li>Données de compte : pendant toute la durée d'utilisation, puis 3 ans après la dernière connexion</li>
 <li>Publications (photos, vidéos, audios) : jusqu'à la suppression par l'utilisateur ou du compte</li>
 <li>Messages privés : jusqu'à la suppression par l'utilisateur ou du compte</li>
 <li>Logs de connexion : 12 mois</li>
 <li>Logs de modération : 6 mois</li>
+<li>Logs analytics (PostHog) : 12 mois, puis anonymisation</li>
+<li>Logs d'erreurs (Sentry) : 90 jours</li>
 <li>Données de score et classement : pendant toute la durée d'utilisation du compte</li>
-</ul>
-
-<h2>8. Partage des données</h2>
-<p>DayDo <strong>ne vend, ne loue et ne cède jamais</strong> vos données personnelles à des tiers à des fins commerciales ou publicitaires.</p>
-<p>Vos données peuvent être partagées uniquement dans les cas suivants :</p>
-<ul>
-<li>Avec Supabase/AWS dans le cadre strict de l'hébergement</li>
-<li>Avec SightEngine dans le cadre strict de la modération automatique du contenu</li>
-<li>Avec Expo (expo.dev) pour l'envoi de notifications push</li>
-<li>Si la loi l'exige ou dans le cadre d'une procédure judiciaire</li>
-<li>Pour protéger les droits, la propriété ou la sécurité de DayDo et de ses utilisateurs</li>
 </ul>
 
 <h2>9. Contenu visible par les autres utilisateurs</h2>
