@@ -28,7 +28,7 @@ ul{list-style:disc;padding-left:20px;margin-bottom:12px}
 <div class="wrap">
 <a href="/" class="back">← Retour à DayDo</a>
 <h1>Politique de Confidentialité</h1>
-<div class="meta">📅 Dernière mise à jour : 24 avril 2026</div>
+<div class="meta">📅 Dernière mise à jour : 28 avril 2026</div>
 
 <h2>1. Présentation</h2>
 <p>DayDo est une application mobile de défis quotidiens créatifs permettant aux utilisateurs de partager des photos, vidéos et enregistrements audio, d'interagir avec une communauté, et de participer à un classement mensuel.</p>
@@ -89,6 +89,7 @@ ul{list-style:disc;padding-left:20px;margin-bottom:12px}
 <h2>4. Modération automatique du contenu</h2>
 <div class="highlight">
 <p>Les photos et vidéos publiées sont analysées automatiquement par un service tiers de modération d'images (SightEngine) pour détecter les contenus inappropriés (nudité, violence, armes, drogue, contenu offensant). Cette analyse se fait sur l'URL du média de manière automatisée et ne constitue pas un traitement de données personnelles à des fins commerciales. Les résultats de modération sont journalisés à des fins d'audit uniquement.</p>
+<p><strong>Suppression immédiate après analyse :</strong> nos appels à SightEngine incluent le paramètre <code>do_not_store=1</code>, qui force la suppression immédiate des images analysées chez le prestataire. Aucune image n'est conservée côté SightEngine après le traitement. Seuls des logs techniques anonymisés (timestamp, scores retournés) peuvent subsister à des fins de monitoring et de facturation.</p>
 </div>
 
 <h2>5. Base légale du traitement</h2>
@@ -107,7 +108,7 @@ ul{list-style:disc;padding-left:20px;margin-bottom:12px}
 <ul>
 <li><strong>Supabase</strong> (Irlande, UE) — base de données, authentification, stockage fichiers. Droit européen directement applicable.</li>
 <li><strong>Cloudflare</strong> (Europe + États-Unis) — hébergement du site daydo.app (Pages), protection anti-bot au signup (Turnstile), hébergement et diffusion des vidéos (Stream), DNS. Transfert hors UE encadré par les clauses contractuelles types de la Commission européenne et le DPA Cloudflare.</li>
-<li><strong>SightEngine</strong> (Europe + États-Unis) — modération automatique des photos et vidéos publiées. Transfert hors UE encadré par les clauses contractuelles types.</li>
+<li><strong>SightEngine</strong> (Europe + États-Unis) — modération automatique des photos et vidéos publiées, avec suppression immédiate après analyse (<code>do_not_store=1</code>). Transfert hors UE encadré par les clauses contractuelles types.</li>
 <li><strong>PostHog</strong> (Francfort, Allemagne — UE) — analyse d'usage de l'application (retention, parcours utilisateur, détection de bugs produit) avec identifiants pseudonymisés. Droit européen directement applicable.</li>
 <li><strong>Brevo</strong> (France, UE) — envoi des emails transactionnels (confirmation d'inscription, réinitialisation de mot de passe, notifications importantes). Droit européen directement applicable.</li>
 <li><strong>Sentry</strong> (États-Unis) — détection et analyse des erreurs techniques dans l'application. Transfert encadré par les clauses contractuelles types.</li>
@@ -225,7 +226,7 @@ ul{list-style:disc;padding-left:20px;margin-bottom:12px}
 <p><a href="mailto:contact@daydo.app">contact@daydo.app</a></p>
 <p>Via l'Application : Paramètres → Aide → Contact</p>
 
-<div class="footer-legal">DayDo — Politique de confidentialité — 24 avril 2026</div>
+<div class="footer-legal">DayDo — Politique de confidentialité — 28 avril 2026</div>
 </div>
 </body>
 </html>
