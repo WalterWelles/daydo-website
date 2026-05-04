@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DayDo — Une journée</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --text:#0F0E16;
+  --text-2:#5A576B;
+  --text-3:#9994A8;
+  --bg:#FAF8F5;
+  --bg-2:#F2EFE9;
+  --accent:#FF5F3D;
+  --accent-2:#6366F1;
+  --gold:#F4A82A;
+  --night:#161028;
+  --border:rgba(15,14,22,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── Nav ── */
+.nav{position:fixed;top:24px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:100px;padding:8px 12px 8px 24px;z-index:100;display:flex;gap:32px;align-items:center;box-shadow:0 8px 32px rgba(0,0,0,0.06)}
+.logo{font-family:'Fraunces',serif;font-weight:800;font-size:20px;letter-spacing:-1px}
+.logo em{color:var(--accent);font-style:normal}
+.nav-links{display:flex;gap:24px;font-size:13px;font-weight:600;color:var(--text-2)}
+.nav-links a{color:inherit;text-decoration:none}
+.nav-cta{background:var(--text);color:white;padding:10px 18px;border-radius:100px;font-size:13px;font-weight:700;text-decoration:none}
+
+/* ── Hero ── */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 28px 60px;background:linear-gradient(180deg,#FFF3E8 0%,#FAF8F5 100%);position:relative;overflow:hidden}
+.hero-sun{position:absolute;top:120px;right:8%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,#FFD89B 0%,#FFA37C 60%,transparent 80%);filter:blur(60px);opacity:0.6;z-index:0}
+.hero-content{max-width:880px;text-align:center;position:relative;z-index:1}
+.hero-time{font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:32px}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(48px,8vw,108px);font-weight:800;line-height:0.95;letter-spacing:-3px;margin-bottom:24px}
+.hero h1 em{font-style:italic;color:var(--accent);font-weight:600}
+.hero-sub{font-size:21px;color:var(--text-2);max-width:600px;margin:0 auto 40px;line-height:1.5}
+.hero-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:16px 28px;border-radius:100px;font-weight:700;font-size:14px;text-decoration:none;transition:all 0.2s}
+.btn-primary{background:var(--text);color:white}
+.btn-primary:hover{transform:scale(1.03)}
+.btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--text)}
+
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--text-3);letter-spacing:2px;text-transform:uppercase;font-weight:600;animation:bobUp 2s ease-in-out infinite}
+@keyframes bobUp{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+
+/* ── Story sections ── */
+.story{padding:140px 28px;position:relative;overflow:hidden}
+.story-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.story-inner.reverse{direction:rtl}
+.story-inner.reverse > *{direction:ltr}
+.story-time{font-family:'Fraunces',serif;font-size:14px;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px}
+.story h2{font-family:'Fraunces',serif;font-size:clamp(40px,5vw,68px);font-weight:800;line-height:1;letter-spacing:-2px;margin-bottom:22px}
+.story h2 em{font-style:italic;font-weight:600}
+.story p{font-size:18px;color:var(--text-2);line-height:1.7;margin-bottom:14px;max-width:480px}
+
+/* Time-of-day backgrounds */
+.story.morning{background:linear-gradient(180deg,#FFF3E8,#FFE5D0)}
+.story.morning .story-time{color:var(--accent)}
+.story.morning h2 em{color:var(--accent)}
+
+.story.midday{background:#FAF8F5}
+.story.midday .story-time{color:var(--gold)}
+.story.midday h2 em{color:var(--gold)}
+
+.story.afternoon{background:linear-gradient(180deg,#FAF8F5,#E8E3F5)}
+.story.afternoon .story-time{color:var(--accent-2)}
+.story.afternoon h2 em{color:var(--accent-2)}
+
+.story.evening{background:linear-gradient(180deg,#E8E3F5,#3A2D5E);color:white}
+.story.evening .story-time{color:#F4A82A}
+.story.evening h2 em{color:#FFB347}
+.story.evening p{color:rgba(255,255,255,0.75)}
+
+.story.night{background:linear-gradient(180deg,#3A2D5E,#161028);color:white}
+.story.night .story-time{color:#9D8DF1}
+.story.night h2 em{color:#9D8DF1}
+.story.night p{color:rgba(255,255,255,0.7)}
+
+/* Phone mockup */
+.phone{width:280px;height:560px;background:var(--text);border-radius:42px;border:8px solid #1a1825;padding:18px;margin:0 auto;box-shadow:0 30px 90px rgba(0,0,0,0.25);position:relative}
+.phone-screen{width:100%;height:100%;background:white;border-radius:28px;overflow:hidden;display:flex;flex-direction:column}
+.phone-notch{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:80px;height:24px;background:var(--text);border-radius:0 0 16px 16px;z-index:10}
+
+/* Notification card */
+.notif-card{margin:60px 16px 0;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-radius:18px;padding:14px 16px;box-shadow:0 8px 32px rgba(0,0,0,0.15);font-family:-apple-system,sans-serif}
+.notif-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.notif-icon{width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#6366F1,#F472B6);display:flex;align-items:center;justify-content:center;font-size:11px;color:white;font-weight:800}
+.notif-app{font-size:11px;color:#666;text-transform:uppercase;letter-spacing:0.5px;font-weight:700}
+.notif-time{margin-left:auto;font-size:10px;color:#999}
+.notif-title{font-size:13px;font-weight:800;color:#000;margin-bottom:2px}
+.notif-body{font-size:12px;color:#444;line-height:1.4}
+
+/* Photo card */
+.photo-card{flex:1;background:linear-gradient(180deg,#FFE5D0,#FFA37C 70%);position:relative;display:flex;align-items:center;justify-content:center;font-size:80px}
+
+/* Likes counter */
+.counter{flex:1;background:white;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px}
+.counter-num{font-family:'Fraunces',serif;font-size:80px;font-weight:800;color:#F472B6;line-height:1}
+.counter-lbl{font-size:13px;color:#666;font-weight:600}
+.counter-bar{width:80%;height:4px;background:#eee;border-radius:2px;overflow:hidden}
+.counter-bar div{height:100%;width:60%;background:linear-gradient(90deg,#F472B6,#FBBF24);border-radius:2px}
+
+/* Duel card */
+.duel-card{flex:1;background:linear-gradient(180deg,#FFF,#F0EBFF);padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px}
+.duel-vs{display:flex;align-items:center;gap:14px;font-family:'Fraunces',serif;font-weight:800;font-size:18px}
+.duel-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#6366F1,#F472B6);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.duel-vs-text{color:#999;font-size:12px;letter-spacing:2px}
+.duel-cta{padding:10px 22px;background:#000;color:white;border-radius:100px;font-size:12px;font-weight:700;margin-top:8px}
+
+/* Resolution moment */
+.resolve{flex:1;background:linear-gradient(180deg,#3A2D5E,#161028);color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;gap:14px;text-align:center}
+.resolve-icon{font-size:60px}
+.resolve-text{font-family:'Fraunces',serif;font-size:18px;font-weight:700}
+.resolve-pts{font-family:'Fraunces',serif;font-size:36px;font-weight:800;color:#FBBF24}
+
+/* New challenge */
+.morning-screen{flex:1;background:linear-gradient(180deg,#FFD89B,#FFA37C);display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;padding:32px;gap:14px;text-align:center}
+.morning-icon{font-size:64px;animation:wakeUp 2s ease-in-out infinite}
+@keyframes wakeUp{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.morning-text{font-family:'Fraunces',serif;font-weight:800}
+.morning-text big{font-size:28px;display:block}
+.morning-text small{font-size:13px;opacity:0.9;display:block;margin-top:4px}
+
+/* Final CTA */
+.final-cta{padding:140px 28px;text-align:center;background:linear-gradient(180deg,#161028,#0a0716);color:white}
+.final-cta h2{font-family:'Fraunces',serif;font-size:clamp(48px,7vw,88px);font-weight:800;letter-spacing:-2px;margin-bottom:18px;line-height:1}
+.final-cta h2 em{font-style:italic;color:#FFB347}
+.final-cta p{font-size:18px;color:rgba(255,255,255,0.7);margin-bottom:36px}
+.final-cta .btn-primary{background:white;color:black}
+
+footer{padding:32px;text-align:center;color:#888;font-size:13px;background:#0a0716}
+footer a{color:#aaa;text-decoration:none;margin:0 14px}
+
+@media (max-width:840px){
+  .story-inner{grid-template-columns:1fr;gap:48px}
+  .story-inner.reverse{direction:ltr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">Day<em>Do</em></div>
+  <div class="nav-links">
+    <a href="#hero">Concept</a>
+    <a href="#download">FAQ</a>
+  </div>
+  <a class="nav-cta" href="#download">Télécharger</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-sun"></div>
+  <div class="hero-content">
+    <div class="hero-time">Une journée dans DayDo</div>
+    <h1>Ce matin,<br><em>un nouveau défi</em><br>est tombé.</h1>
+    <p class="hero-sub">DayDo est une vraie communauté qui se connecte chaque jour pour relever le même défi créatif. Voici à quoi ressemble une journée.</p>
+    <div class="hero-buttons">
+      <a class="btn btn-primary" href="#story">Découvrir l'histoire ↓</a>
+      <a class="btn btn-outline" href="#download">Télécharger l'app</a>
+    </div>
+  </div>
+  <div class="scroll-hint">⌄ Scroll</div>
+</section>
+
+<!-- 08:00 -->
+<section class="story morning" id="story">
+  <div class="story-inner">
+    <div>
+      <div class="story-time">08h00 · Le matin</div>
+      <h2>Le défi <em>tombe</em>.</h2>
+      <p>Une notification, un seul défi pour toute la communauté. Photo, vidéo ou audio. Tu as 24 heures.</p>
+      <p>Pas d'algorithme qui choisit pour toi. Tout le monde voit la même chose.</p>
+    </div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen" style="background:linear-gradient(180deg,#FFD89B,#FFA37C)">
+        <div class="notif-card">
+          <div class="notif-head">
+            <div class="notif-icon">DD</div>
+            <div class="notif-app">DayDo</div>
+            <div class="notif-time">à l'instant</div>
+          </div>
+          <div class="notif-title">🌅 Nouveau défi !</div>
+          <div class="notif-body">"Montre-nous ton moyen de transport ce lundi"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12:00 -->
+<section class="story midday">
+  <div class="story-inner reverse">
+    <div>
+      <div class="story-time">12h05 · Midi</div>
+      <h2>Tu <em>participes</em>.</h2>
+      <p>Photo, vidéo (30s) ou audio (60s) — capturé en temps réel, pas depuis ta galerie. C'est la règle pour rester authentique.</p>
+      <p>Vidéo = 20 pts. Photo = 10 pts. Audio = 10 pts. Bonus si tu cumules 2 formats.</p>
+    </div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="photo-card">📸</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14:00 -->
+<section class="story afternoon">
+  <div class="story-inner">
+    <div>
+      <div class="story-time">14h00 · L'après-midi</div>
+      <h2>La communauté <em>like</em>.</h2>
+      <p>Likes, commentaires, votes créativité. Chaque interaction te rapporte des points et fait monter ton rang.</p>
+      <p>Mais attention : un cap par jour pour empêcher le farm. Ici on récompense la régularité.</p>
+    </div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="counter">
+          <div class="counter-num">+34</div>
+          <div class="counter-lbl">likes reçus aujourd'hui</div>
+          <div class="counter-bar"><div></div></div>
+          <div style="font-size:11px;color:#999">21 / 30 du cap journalier</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 18:00 -->
+<section class="story evening">
+  <div class="story-inner reverse">
+    <div>
+      <div class="story-time">18h30 · La fin de journée</div>
+      <h2>Un <em>duel</em><br>arrive.</h2>
+      <p>@MoLPirate te défie. Vous avez 24h. Le gagnant prend 10% des points du jour du perdant.</p>
+      <p>Tu peux accepter, refuser, ou utiliser un Reflect pour renvoyer la défaite à l'attaquant si tu perds.</p>
+    </div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="duel-card">
+          <div style="font-size:60px">⚔️</div>
+          <div class="duel-vs">
+            <div class="duel-avatar">MP</div>
+            <span class="duel-vs-text">VS</span>
+            <div class="duel-avatar" style="background:linear-gradient(135deg,#F472B6,#FBBF24)">TOI</div>
+          </div>
+          <div style="font-family:Fraunces;font-size:16px;font-weight:700;color:#222;margin-top:8px">Duel proposé</div>
+          <div class="duel-cta">Accepter</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 23:55 -->
+<section class="story night">
+  <div class="story-inner">
+    <div>
+      <div class="story-time">23h55 · La nuit</div>
+      <h2>Les duels <em>se résolvent</em>.</h2>
+      <p>Le système calcule. Les transferts s'opèrent. Les notifications partent. Les classements changent.</p>
+      <p>À minuit, le défi se termine. Et un nouveau apparaît.</p>
+    </div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="resolve">
+          <div class="resolve-icon">⚔️</div>
+          <div class="resolve-text">Duel gagné !</div>
+          <div class="resolve-pts">+24 pts</div>
+          <div style="font-size:12px;opacity:0.7">contre @MoLPirate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 00:00 -->
+<section class="story night" style="background:linear-gradient(180deg,#161028,#0a0716)">
+  <div class="story-inner reverse">
+    <div>
+      <div class="story-time">00h00 · Demain</div>
+      <h2>Et ça <em>recommence</em>.</h2>
+      <p>Un nouveau jour. Un nouveau défi. La même communauté qui se retrouve.</p>
+      <p>365 fois par an. Sans pression d'abonnés, sans algorithme. Juste l'envie de créer.</p>
+    </div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="morning-screen">
+          <div class="morning-icon">🌅</div>
+          <div class="morning-text"><big>Nouveau défi</big><small>04 mai · 00h00</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta" id="download">
+  <h2>Rejoins le rituel<br><em>quotidien.</em></h2>
+  <p>Disponible sur iOS et Android. Toujours gratuit.</p>
+  <div class="hero-buttons">
+    <a class="btn btn-primary" href="https://apps.apple.com/app/daydo/id6760622187">📱 App Store</a>
+    <a class="btn btn-outline" href="https://play.google.com/store/apps/details?id=app.daydo.challenge" style="border-color:white;color:white">🤖 Google Play</a>
+  </div>
+</section>
+
+<footer>
+  <a href="/faq.html">FAQ</a>
+  <a href="/terms.html">CGU</a>
+  <a href="/privacy.html">Confidentialité</a>
+  <a href="mailto:contact@daydo.app">Contact</a>
+  <div style="margin-top:16px;color:#666">© 2026 DayDo</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DayDo — Tech & Confiance</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFBFD;
+  --surface:#FFFFFF;
+  --border:rgba(15,23,42,0.08);
+  --border-strong:rgba(15,23,42,0.14);
+  --text:#0F172A;
+  --text-2:#475569;
+  --text-3:#94A3B8;
+  --accent:#0F4DBF;
+  --accent-2:#10B981;
+  --warn:#F59E0B;
+  --danger:#EF4444;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.mono{font-family:'JetBrains Mono',monospace}
+
+/* ── Nav ── */
+.nav{background:rgba(255,255,255,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:16px 32px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-0.5px}
+.logo-mark{width:30px;height:30px;border-radius:8px;background:var(--text);color:white;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.nav-links{display:flex;gap:28px;font-size:13px;font-weight:600;color:var(--text-2)}
+.nav-links a{color:inherit;text-decoration:none}
+.nav-cta{background:var(--text);color:white;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none}
+
+/* ── Hero ── */
+.hero{padding:80px 32px 60px;max-width:1200px;margin:0 auto}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);color:var(--accent-2);border-radius:100px;font-size:12px;font-weight:700;margin-bottom:24px}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent-2);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-2px;line-height:1.05;margin-bottom:20px;max-width:880px}
+.hero p{font-size:19px;color:var(--text-2);line-height:1.6;max-width:680px;margin-bottom:36px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:14px 24px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;transition:all 0.15s;display:inline-flex;align-items:center;gap:8px;border:1px solid transparent}
+.btn-primary{background:var(--text);color:white}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(15,23,42,0.2)}
+.btn-secondary{background:white;color:var(--text);border-color:var(--border-strong)}
+
+/* ── Stats dashboard ── */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1200px;margin:0 auto;padding:0 32px 60px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px}
+.stat-label{font-size:12px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:10px}
+.stat-num{font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:700;letter-spacing:-1.5px;color:var(--text);line-height:1}
+.stat-delta{font-size:12px;color:var(--accent-2);font-weight:700;margin-top:6px}
+.stat-delta.neutral{color:var(--text-3)}
+
+/* ── Section base ── */
+.section{padding:100px 32px;max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;padding:4px 10px;background:rgba(15,77,191,0.08);color:var(--accent);border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:14px}
+.section h2{font-size:clamp(32px,4.5vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:14px;max-width:760px}
+.section-sub{font-size:18px;color:var(--text-2);line-height:1.6;max-width:680px;margin-bottom:48px}
+
+/* ── Ethics grid ── */
+.ethics-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.ethics-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:32px;display:flex;gap:18px;align-items:flex-start}
+.ethics-icon{width:44px;height:44px;border-radius:10px;background:rgba(15,77,191,0.08);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.ethics-card h3{font-size:17px;font-weight:800;margin-bottom:8px}
+.ethics-card p{font-size:14px;color:var(--text-2);line-height:1.6}
+
+/* ── Tech stack ── */
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tech-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;display:flex;align-items:center;gap:16px;transition:transform 0.2s}
+.tech-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(15,23,42,0.06)}
+.tech-logo{width:44px;height:44px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.tech-name{font-weight:700;font-size:15px;margin-bottom:2px}
+.tech-role{font-size:12px;color:var(--text-3)}
+
+/* ── Compliance / Trust ── */
+.trust-block{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:48px;display:grid;grid-template-columns:1fr 1.5fr;gap:48px;align-items:center}
+.trust-block h3{font-size:24px;font-weight:800;margin-bottom:14px;letter-spacing:-0.5px}
+.trust-block p{font-size:14px;color:var(--text-2);line-height:1.7;margin-bottom:14px}
+.trust-list{list-style:none;display:grid;gap:14px}
+.trust-list li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--text)}
+.trust-list li::before{content:'✓';color:var(--accent-2);font-weight:900;font-size:18px;flex-shrink:0;width:24px;height:24px;background:rgba(16,185,129,0.10);border-radius:6px;display:flex;align-items:center;justify-content:center}
+
+/* ── Map (community heatmap) ── */
+.heatmap{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:36px;text-align:center}
+.heatmap-svg{max-width:600px;margin:24px auto;display:block}
+.heatmap-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:24px}
+.hs-item{font-size:13px}
+.hs-num{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;color:var(--text)}
+.hs-label{color:var(--text-3);text-transform:uppercase;letter-spacing:1px;font-size:11px;font-weight:700;margin-top:4px}
+
+/* ── For brands ── */
+.brands-block{background:linear-gradient(135deg,#0F172A,#1E293B);color:white;border-radius:20px;padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.brands-block h2{font-size:42px;font-weight:800;letter-spacing:-1.5px;line-height:1.05;margin-bottom:18px}
+.brands-block p{color:rgba(255,255,255,0.75);font-size:16px;line-height:1.6;margin-bottom:18px}
+.brands-list{display:grid;gap:14px}
+.brand-bullet{display:flex;gap:14px;align-items:flex-start;padding:14px 18px;background:rgba(255,255,255,0.04);border-radius:10px;border:1px solid rgba(255,255,255,0.08)}
+.brand-bullet-icon{font-size:22px;flex-shrink:0}
+.brand-bullet h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.brand-bullet p{font-size:13px;color:rgba(255,255,255,0.6);margin:0}
+
+/* ── Final CTA ── */
+.final{padding:120px 32px;text-align:center;max-width:880px;margin:0 auto}
+.final h2{font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-2px;line-height:1.05;margin-bottom:18px}
+.final p{font-size:18px;color:var(--text-2);margin-bottom:32px}
+
+footer{background:var(--text);color:rgba(255,255,255,0.6);padding:40px 32px;text-align:center;font-size:13px}
+footer a{color:rgba(255,255,255,0.8);text-decoration:none;margin:0 14px}
+
+@media (max-width:840px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .ethics-grid,.tech-grid{grid-template-columns:1fr}
+  .trust-block,.brands-block{grid-template-columns:1fr;padding:32px}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">
+    <div class="logo-mark">DD</div>
+    <span>DayDo</span>
+  </div>
+  <div class="nav-links">
+    <a href="#stats">Stats</a>
+    <a href="#ethique">Éthique</a>
+    <a href="#stack">Stack</a>
+    <a href="#partenaires">Partenaires</a>
+  </div>
+  <a href="#download" class="nav-cta">Télécharger</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Communauté active · 187 utilisateurs</div>
+  <h1>Le réseau social qui récompense l'effort, pas la popularité.</h1>
+  <p>DayDo est conçu pour les utilisateurs qui en ont marre du scroll infini, pour les parents qui cherchent une alternative saine, et pour les marques qui veulent toucher la génération en quête de sens.</p>
+  <div class="hero-buttons">
+    <a class="btn btn-primary" href="#download">Télécharger l'app</a>
+    <a class="btn btn-secondary" href="#partenaires">Pour les marques →</a>
+  </div>
+</section>
+
+<!-- Stats live -->
+<section class="stats-grid" id="stats">
+  <div class="stat-card">
+    <div class="stat-label">Utilisateurs</div>
+    <div class="stat-num">187</div>
+    <div class="stat-delta">+42 cette semaine</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Posts cette semaine</div>
+    <div class="stat-num">324</div>
+    <div class="stat-delta">+12% vs sem. -1</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Modération auto</div>
+    <div class="stat-num">99.2%</div>
+    <div class="stat-delta">via Sightengine IA</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Uptime 30j</div>
+    <div class="stat-num">99.98%</div>
+    <div class="stat-delta neutral">Cloudflare + Supabase</div>
+  </div>
+</section>
+
+<!-- Éthique -->
+<section class="section" id="ethique">
+  <div class="section-tag">Éthique by design</div>
+  <h2>Conçu pour respecter les utilisateurs.</h2>
+  <p class="section-sub">Pas d'algorithme qui exploite l'attention. Pas de tracking publicitaire. Pas de revente de données. Notre éthique n'est pas un argument marketing — c'est un choix d'architecture.</p>
+
+  <div class="ethics-grid">
+    <div class="ethics-card">
+      <div class="ethics-icon">🛡️</div>
+      <div>
+        <h3>Modération préventive</h3>
+        <p>Tous les médias passent par Sightengine (IA spécialisée) avant publication. Détection nudité, violence, drogue, haine. Paramètre <span class="mono">do_not_store=1</span> activé : les médias ne sont jamais conservés par le prestataire.</p>
+      </div>
+    </div>
+    <div class="ethics-card">
+      <div class="ethics-icon">🎙️</div>
+      <div>
+        <h3>Pas de modération vocale automatique</h3>
+        <p>Surveiller la voix de quelqu'un est une frontière qu'on ne franchit pas. La modération audio se fait via signalement par la communauté.</p>
+      </div>
+    </div>
+    <div class="ethics-card">
+      <div class="ethics-icon">🌍</div>
+      <div>
+        <h3>Langage inclusif obligatoire</h3>
+        <p>Toute l'app utilise "celles et ceux", "elles et ils". Pas de masculin générique. Question de respect, pas de wokisme.</p>
+      </div>
+    </div>
+    <div class="ethics-card">
+      <div class="ethics-icon">🚫</div>
+      <div>
+        <h3>Aucun pixel de tracking tiers</h3>
+        <p>Pas de Meta Pixel, pas de Google Ads, pas de remarketing. Nos analytics (PostHog) servent à améliorer le produit, pas à vendre votre profil.</p>
+      </div>
+    </div>
+    <div class="ethics-card">
+      <div class="ethics-icon">⏱️</div>
+      <div>
+        <h3>Plafonds anti-addiction</h3>
+        <p>Cap quotidien sur les points (400/jour, 300 si Top 3) pour empêcher les marathons. L'app récompense la régularité, pas le burn-out.</p>
+      </div>
+    </div>
+    <div class="ethics-card">
+      <div class="ethics-icon">🔐</div>
+      <div>
+        <h3>RGPD conformes par design</h3>
+        <p>Suppression compte en 24h, données minimales collectées, hébergement Supabase EU (Francfort). Mention légale et CGU complets.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tech stack -->
+<section class="section" id="stack">
+  <div class="section-tag">Stack technique</div>
+  <h2>Construit avec ce qui marche.</h2>
+  <p class="section-sub">Pas de hype, pas de surengineering. On a choisi des outils éprouvés, scalables et qui respectent la vie privée.</p>
+
+  <div class="tech-grid">
+    <div class="tech-card">
+      <div class="tech-logo">⚡</div>
+      <div><div class="tech-name">Cloudflare</div><div class="tech-role">CDN, Stream, Pages, Turnstile</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-logo">🐘</div>
+      <div><div class="tech-name">Supabase</div><div class="tech-role">PostgreSQL, Auth, Realtime (EU)</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-logo">📱</div>
+      <div><div class="tech-name">Expo + React Native</div><div class="tech-role">iOS, Android, OTA updates</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-logo">🛡️</div>
+      <div><div class="tech-name">Sightengine</div><div class="tech-role">Modération IA — image, vidéo, texte</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-logo">📊</div>
+      <div><div class="tech-name">PostHog</div><div class="tech-role">Analytics produit (self-hostable)</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-logo">📧</div>
+      <div><div class="tech-name">Brevo</div><div class="tech-role">SMTP transactionnel (EU)</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-logo">🐛</div>
+      <div><div class="tech-name">Sentry</div><div class="tech-role">Error tracking + replay</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-logo">🔐</div>
+      <div><div class="tech-name">Apple Sign In</div><div class="tech-role">Auth privacy-first</div></div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-logo">🍎</div>
+      <div><div class="tech-name">App Store + Play</div><div class="tech-role">Distribution officielle</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust block -->
+<section class="section">
+  <div class="trust-block">
+    <div>
+      <h3>Sécurité<br>de production.</h3>
+      <p>L'app a été auditée techniquement avant chaque release majeure. RLS Supabase actif sur toutes les tables sensibles, triggers anti-fraude, validation server-side systématique.</p>
+    </div>
+    <ul class="trust-list">
+      <li>Row Level Security PostgreSQL — chaque user voit ses propres données</li>
+      <li>Triggers anti-fraude — manipulation de classement bloquée et auditée</li>
+      <li>Validation côté serveur (Edge Functions Deno) sur tous les flux critiques</li>
+      <li>Cron de modération 24/7 + signalements communautaires</li>
+      <li>Captcha Cloudflare Turnstile à l'inscription</li>
+      <li>JWT révocables par session (active_session_id)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Map -->
+<section class="section">
+  <div class="section-tag">Communauté</div>
+  <h2>Une base d'utilisateurs<br>francophones engagés.</h2>
+  <p class="section-sub">Distribution actuelle de notre communauté (anonymisée, RGPD-friendly).</p>
+
+  <div class="heatmap">
+    <svg class="heatmap-svg" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+      <!-- Simplified Europe outline -->
+      <path d="M 120 100 L 180 80 L 240 90 L 280 70 L 340 80 L 380 100 L 420 120 L 440 160 L 420 200 L 380 220 L 320 240 L 280 250 L 240 240 L 200 230 L 160 210 L 120 180 Z" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1.5"/>
+      <!-- France highlight -->
+      <path d="M 200 140 L 240 130 L 280 150 L 290 200 L 250 230 L 210 220 L 195 180 Z" fill="#0F4DBF" opacity="0.9"/>
+      <text x="245" y="190" font-size="13" font-weight="800" fill="white" text-anchor="middle">FR</text>
+      <!-- Heatmap dots -->
+      <circle cx="240" cy="160" r="14" fill="#0F4DBF" opacity="0.4"/>
+      <circle cx="240" cy="160" r="8" fill="#0F4DBF"/>
+      <circle cx="220" cy="190" r="10" fill="#0F4DBF" opacity="0.5"/>
+      <circle cx="265" cy="200" r="8" fill="#0F4DBF" opacity="0.6"/>
+      <circle cx="200" cy="170" r="6" fill="#0F4DBF" opacity="0.5"/>
+      <circle cx="250" cy="220" r="7" fill="#0F4DBF" opacity="0.5"/>
+      <!-- Other countries small dots -->
+      <circle cx="380" cy="110" r="4" fill="#10B981" opacity="0.6"/>
+      <circle cx="320" cy="240" r="4" fill="#10B981" opacity="0.6"/>
+      <circle cx="180" cy="200" r="3" fill="#10B981" opacity="0.5"/>
+    </svg>
+    <div class="heatmap-stats">
+      <div class="hs-item">
+        <div class="hs-num">85%</div>
+        <div class="hs-label">France</div>
+      </div>
+      <div class="hs-item">
+        <div class="hs-num">9%</div>
+        <div class="hs-label">Belgique / Suisse</div>
+      </div>
+      <div class="hs-item">
+        <div class="hs-num">6%</div>
+        <div class="hs-label">Autres EU + Outre-mer</div>
+      </div>
+      <div class="hs-item">
+        <div class="hs-num">FR · EN · ES · AR</div>
+        <div class="hs-label">Langues supportées</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- For brands -->
+<section class="section" id="partenaires">
+  <div class="brands-block">
+    <div>
+      <div class="section-tag" style="background:rgba(255,255,255,0.10);color:white">Pour les marques</div>
+      <h2>Des insights vivants, pas de spam publicitaire.</h2>
+      <p>Là où Kantar facture 100K€ une étude figée, DayDo capture des tendances de fond en continu. Et toujours en données agrégées — jamais de revente de profils individuels.</p>
+      <a class="btn btn-primary" href="mailto:contact@daydo.app" style="background:white;color:#0F172A;margin-top:14px">Discuter d'un partenariat</a>
+    </div>
+    <div class="brands-list">
+      <div class="brand-bullet">
+        <div class="brand-bullet-icon">📊</div>
+        <div>
+          <h4>Insights communautaires</h4>
+          <p>Extraction de tendances anonymisées sur les défis quotidiens (consumer insights live).</p>
+        </div>
+      </div>
+      <div class="brand-bullet">
+        <div class="brand-bullet-icon">🎯</div>
+        <div>
+          <h4>Défis sponsorisés</h4>
+          <p>Marque = co-création d'un défi avec la communauté. Validation interne avant diffusion.</p>
+        </div>
+      </div>
+      <div class="brand-bullet">
+        <div class="brand-bullet-icon">🤝</div>
+        <div>
+          <h4>Partenariats créateurs</h4>
+          <p>Codes campagne dédiés (Oono Twitch — mai 2026, Jeremstar — Halloween 2026).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final" id="download">
+  <h2>Une app saine, transparente, gratuite.</h2>
+  <p>Disponible sur iOS et Android. Toujours gratuit, sans publicité.</p>
+  <div class="hero-buttons" style="justify-content:center">
+    <a class="btn btn-primary" href="https://apps.apple.com/app/daydo/id6760622187">📱 App Store</a>
+    <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=app.daydo.challenge">🤖 Google Play</a>
+  </div>
+</section>
+
+<footer>
+  <a href="/faq.html">FAQ</a>
+  <a href="/terms.html">CGU</a>
+  <a href="/privacy.html">Confidentialité</a>
+  <a href="/legal.html">Mentions légales</a>
+  <a href="mailto:contact@daydo.app">Contact</a>
+  <div style="margin-top:18px">© 2026 DayDo · Hébergé en France 🇫🇷 / Allemagne 🇩🇪 (Cloudflare + Supabase EU)</div>
+</footer>
+
+</body>
+</html>
