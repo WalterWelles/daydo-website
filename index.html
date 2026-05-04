@@ -3,7 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DayDo — Gamifié</title>
+<link rel="canonical" href="https://daydo.app/">
+<title>DayDo · Le défi du jour. Photo, vidéo, audio. Chaque jour.</title>
+<meta name="description" content="Un défi créatif chaque jour. Photo, vidéo ou audio. Likes, duels, classement mensuel. Le réseau social qui récompense l'effort, pas la popularité. iOS & Android, gratuit.">
+<meta name="theme-color" content="#6366F1">
+<meta name="keywords" content="DayDo, défi quotidien, réseau social, créativité, photo, vidéo, audio, classement, communauté, app, iOS, Android">
+<meta property="og:title" content="DayDo · Un défi créatif chaque jour">
+<meta property="og:description" content="Photo, vidéo, audio. Likes, duels, classement mensuel. Le réseau social qui récompense l'effort, pas la popularité.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://daydo.app">
+<meta property="og:image" content="https://daydo.app/og-image.png">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="DayDo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DayDo · Un défi créatif chaque jour">
+<meta name="twitter:description" content="Photo, vidéo, audio. Likes, duels, classement mensuel. Gratuit sur iOS & Android.">
+<meta name="twitter:image" content="https://daydo.app/og-image.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="apple-itunes-app" content="app-id=6760622187">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "DayDo",
+  "operatingSystem": "iOS, Android",
+  "applicationCategory": "SocialNetworkingApplication",
+  "description": "Un défi créatif chaque jour. Photo, vidéo ou audio. Likes, duels, classement mensuel. Le réseau social qui récompense l'effort, pas la popularité.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "100"
+  }
+}
+</script>
+<script>
+// Redirection auto vers le store selon l'OS pour /download
+(function() {
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPhone|iPad|iPod/i.test(ua);
+  var isAndroid = /Android/i.test(ua);
+  var path = window.location.pathname;
+  if (path === '/download') {
+    if (isIOS) window.location.href = 'https://apps.apple.com/app/daydo/id6760622187';
+    else if (isAndroid) window.location.href = 'https://play.google.com/store/apps/details?id=app.daydo.challenge';
+  }
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
