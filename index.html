@@ -116,27 +116,26 @@ html,body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;
 .boost-result-num{font-family:'Space Grotesk',monospace;font-size:80px;font-weight:900;background:linear-gradient(135deg,#6366F1,#F472B6,#FBBF24);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;letter-spacing:-3px}
 .boost-result-label{font-size:14px;color:var(--text-2);font-weight:600;margin-top:8px}
 
-/* ── Hall of Fame (titles avec noms + critères) ── */
-.hof-cat{margin-bottom:48px}
-.hof-cat-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
-.hof-cat-icon{font-size:24px}
-.hof-cat-name{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:800;letter-spacing:-0.5px}
-.hof-cat-count{margin-left:auto;font-size:11px;color:var(--text-3);font-weight:700;letter-spacing:1px}
-.hof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.hof-card{background:rgba(99,102,241,0.04);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;gap:14px;align-items:flex-start;transition:transform 0.2s, background 0.2s, border-color 0.2s}
-.hof-card:hover{transform:translateY(-3px);background:rgba(244,114,182,0.06);border-color:rgba(244,114,182,0.3)}
-.hof-card .em{font-size:32px;flex-shrink:0;line-height:1}
-.hof-card .info{flex:1;min-width:0}
-.hof-card .name{font-weight:800;font-size:14px;color:white;margin-bottom:4px;letter-spacing:-0.2px}
-.hof-card .crit{font-size:11px;color:var(--text-2);line-height:1.45}
+/* ── Hall of Fame highlights ── */
+.hof-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:32px}
+.hof-card{background:rgba(99,102,241,0.04);border:1px solid var(--border);border-radius:18px;padding:24px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;transition:transform 0.3s ease, background 0.3s, border-color 0.3s;position:relative;overflow:hidden}
+.hof-card:hover{transform:translateY(-6px);background:rgba(244,114,182,0.06);border-color:rgba(244,114,182,0.4)}
+.hof-card .em{font-size:48px;line-height:1;filter:drop-shadow(0 4px 16px rgba(99,102,241,0.3))}
+.hof-card .name{font-weight:800;font-size:14px;color:white;letter-spacing:-0.2px;line-height:1.2}
+.hof-card .crit{font-size:11px;color:var(--text-2);line-height:1.4;min-height:32px}
+.hof-card .rarity{font-size:9px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,0.06);color:var(--text-3)}
 .hof-card.legendary{background:rgba(251,191,36,0.06);border-color:rgba(251,191,36,0.25)}
 .hof-card.legendary .name{color:#FBBF24}
-.hof-card.mythic{background:rgba(244,63,94,0.06);border-color:rgba(244,63,94,0.25);box-shadow:0 0 20px rgba(244,63,94,0.06)}
+.hof-card.legendary .rarity{background:rgba(251,191,36,0.15);color:#FBBF24}
+.hof-card.mythic{background:rgba(244,63,94,0.06);border-color:rgba(244,63,94,0.25);box-shadow:0 0 30px rgba(244,63,94,0.08)}
 .hof-card.mythic .name{color:#F43F5E}
-.hof-card.epic{background:rgba(168,85,247,0.05);border-color:rgba(168,85,247,0.20)}
+.hof-card.mythic .rarity{background:rgba(244,63,94,0.15);color:#F43F5E}
+.hof-card.epic{background:rgba(168,85,247,0.05);border-color:rgba(168,85,247,0.22)}
 .hof-card.epic .name{color:#C084FC}
-.hof-rarity-badge{position:absolute;top:8px;right:8px;font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;opacity:0.7}
-.hof-card{position:relative}
+.hof-card.epic .rarity{background:rgba(168,85,247,0.15);color:#C084FC}
+.hof-cta-wrap{text-align:center;margin-top:48px}
+.hof-cta-count{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(99,102,241,0.10);border:1px solid rgba(99,102,241,0.25);border-radius:100px;font-size:13px;font-weight:700;color:var(--text-2);margin-bottom:20px}
+.hof-cta-count strong{color:var(--accent-2);font-weight:900;font-size:15px}
 
 /* ── CTA ── */
 .cta{padding:120px 28px;text-align:center;background:linear-gradient(180deg,transparent,rgba(99,102,241,0.10))}
@@ -149,12 +148,15 @@ footer{padding:40px 28px;border-top:1px solid var(--border);text-align:center;co
 @media (max-width:880px){
   .hero{grid-template-columns:1fr}
   .bonuses-grid{grid-template-columns:1fr 1fr}
-  .hof-grid{grid-template-columns:repeat(6,1fr)}
+  .hof-grid{grid-template-columns:repeat(3,1fr);gap:12px}
   .boost-calc-grid{grid-template-columns:1fr;gap:24px}
 }
 @media (max-width:540px){
   .bonuses-grid{grid-template-columns:1fr}
-  .hof-grid{grid-template-columns:repeat(4,1fr)}
+  .hof-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .hof-card{padding:18px 12px}
+  .hof-card .em{font-size:38px}
+  .hof-card .name{font-size:13px}
   .nav-links{display:none}
 }
 </style>
@@ -306,161 +308,83 @@ footer{padding:40px 28px;border-top:1px solid var(--border);text-align:center;co
   </div>
 </section>
 
-<!-- Hall of Fame (titles) -->
+<!-- Hall of Fame (highlights only) -->
 <section class="section" id="hof">
   <div class="section-tag">👑 Hall of Fame</div>
   <h2>71 titres à<br>débloquer.</h2>
-  <p class="section-sub">Champions, légendes, viraux, créatifs... Chaque titre raconte une histoire. Équipe-le sur ton profil pour briller.</p>
+  <p class="section-sub">Champions, légendes, viraux, créatifs... Chaque titre raconte une histoire. Voici quelques-uns des plus rares à dénicher dans l'app.</p>
 
-  <!-- Personnalité -->
-  <div class="hof-cat">
-    <div class="hof-cat-head"><span class="hof-cat-icon">🎭</span><span class="hof-cat-name">Personnalité</span><span class="hof-cat-count">5 TITRES</span></div>
-    <div class="hof-grid">
-      <div class="hof-card"><div class="em">😂</div><div class="info"><div class="name">L'humoriste</div><div class="crit">Reçois 500 likes cumulés sur tes posts photo</div></div></div>
-      <div class="hof-card"><div class="em">🎙️</div><div class="info"><div class="name">L'orateur</div><div class="crit">Poste 50 défis au format audio</div></div></div>
-      <div class="hof-card"><div class="em">🎬</div><div class="info"><div class="name">Le conteur</div><div class="crit">Poste 50 défis au format vidéo</div></div></div>
-      <div class="hof-card"><div class="em">◽</div><div class="info"><div class="name">Le minimaliste</div><div class="crit">Poste 30 défis sans aucune légende</div></div></div>
-      <div class="hof-card"><div class="em">🕶️</div><div class="info"><div class="name">Le mystérieux</div><div class="crit">Poste 50 défis en visibilité privée</div></div></div>
+  <div class="hof-grid">
+    <div class="hof-card mythic">
+      <div class="em">🐉</div>
+      <div class="name">Légende vivante</div>
+      <div class="crit">365 jours consécutifs sans rater</div>
+      <span class="rarity">Mythique</span>
+    </div>
+    <div class="hof-card mythic">
+      <div class="em">🔮</div>
+      <div class="name">L'Oracle</div>
+      <div class="crit">Top 1 sur 2 mois consécutifs</div>
+      <span class="rarity">Mythique</span>
+    </div>
+    <div class="hof-card mythic">
+      <div class="em">🚀</div>
+      <div class="name">500 likes en 24h</div>
+      <div class="crit">500 likes sur un seul post</div>
+      <span class="rarity">Mythique</span>
+    </div>
+    <div class="hof-card mythic">
+      <div class="em">🥀</div>
+      <div class="name">La Misandre</div>
+      <div class="crit">Misandre s'écrit avec un I</div>
+      <span class="rarity">Custom</span>
+    </div>
+    <div class="hof-card mythic">
+      <div class="em">⚡</div>
+      <div class="name">Le Titan</div>
+      <div class="crit">4000 points en un seul mois</div>
+      <span class="rarity">Mythique</span>
+    </div>
+    <div class="hof-card legendary">
+      <div class="em">🪨</div>
+      <div class="name">David vs Goliath</div>
+      <div class="crit">Battre un user du top 10 en duel</div>
+      <span class="rarity">Légendaire</span>
+    </div>
+    <div class="hof-card legendary">
+      <div class="em">🥇</div>
+      <div class="name">Premier or</div>
+      <div class="crit">Top 1 d'un mois pour la 1ère fois</div>
+      <span class="rarity">Légendaire</span>
+    </div>
+    <div class="hof-card legendary">
+      <div class="em">❤️‍🔥</div>
+      <div class="name">Coup de cœur</div>
+      <div class="crit">Post sélectionné par l'équipe</div>
+      <span class="rarity">Légendaire</span>
+    </div>
+    <div class="hof-card epic">
+      <div class="em">🍎</div>
+      <div class="name">Pionnier App Store</div>
+      <div class="crit">Inscrit avant le 6 avril 2026</div>
+      <span class="rarity">Épique</span>
+    </div>
+    <div class="hof-card epic">
+      <div class="em">🎓</div>
+      <div class="name">Le savant</div>
+      <div class="crit">200 votes créativité reçus</div>
+      <span class="rarity">Épique</span>
     </div>
   </div>
 
-  <!-- Rythme -->
-  <div class="hof-cat">
-    <div class="hof-cat-head"><span class="hof-cat-icon">🕐</span><span class="hof-cat-name">Rythme</span><span class="hof-cat-count">5 TITRES</span></div>
-    <div class="hof-grid">
-      <div class="hof-card"><div class="em">🚌</div><div class="info"><div class="name">Le fou du bus</div><div class="crit">1er à poster le défi du jour 10 jours différents</div></div></div>
-      <div class="hof-card"><div class="em">🌙</div><div class="info"><div class="name">Le noctambule</div><div class="crit">Poste 30 défis entre 23h et 4h du matin</div></div></div>
-      <div class="hof-card"><div class="em">🌅</div><div class="info"><div class="name">Le matinal</div><div class="crit">Poste 30 défis entre 5h et 8h du matin</div></div></div>
-      <div class="hof-card"><div class="em">⏰</div><div class="info"><div class="name">Le ponctuel</div><div class="crit">Poste à 12h00 pile 5 fois</div></div></div>
-      <div class="hof-card"><div class="em">⌛</div><div class="info"><div class="name">Le retardataire</div><div class="crit">Poste dans les 5 dernières minutes 10 fois</div></div></div>
-    </div>
-  </div>
-
-  <!-- Performance -->
-  <div class="hof-cat">
-    <div class="hof-cat-head"><span class="hof-cat-icon">📈</span><span class="hof-cat-name">Performance</span><span class="hof-cat-count">7 TITRES</span></div>
-    <div class="hof-grid">
-      <div class="hof-card legendary"><div class="em">🥇</div><div class="info"><div class="name">Premier or</div><div class="crit">Termine top 1 d'un mois pour la 1ère fois</div></div></div>
-      <div class="hof-card epic"><div class="em">🏆</div><div class="info"><div class="name">Le finaliste</div><div class="crit">Termine top 3 d'un mois</div></div></div>
-      <div class="hof-card epic"><div class="em">📈</div><div class="info"><div class="name">Le régulier</div><div class="crit">Termine top 100 sur 3 mois consécutifs</div></div></div>
-      <div class="hof-card epic"><div class="em">💯</div><div class="info"><div class="name">Streak parfaite</div><div class="crit">100 jours consécutifs sans rater une journée</div></div></div>
-      <div class="hof-card"><div class="em">🤖</div><div class="info"><div class="name">La machine</div><div class="crit">Atteins une streak de 30 jours consécutifs</div></div></div>
-      <div class="hof-card"><div class="em">🏃</div><div class="info"><div class="name">Le marathonien</div><div class="crit">Poste 100 défis à vie</div></div></div>
-      <div class="hof-card epic"><div class="em">⭐</div><div class="info"><div class="name">Le légendaire</div><div class="crit">Poste 500 défis à vie</div></div></div>
-    </div>
-  </div>
-
-  <!-- Duels -->
-  <div class="hof-cat">
-    <div class="hof-cat-head"><span class="hof-cat-icon">⚔️</span><span class="hof-cat-name">Duels</span><span class="hof-cat-count">8 TITRES</span></div>
-    <div class="hof-grid">
-      <div class="hof-card"><div class="em">🥊</div><div class="info"><div class="name">Le combattant</div><div class="crit">Gagne 10 duels au total</div></div></div>
-      <div class="hof-card"><div class="em">🛡️</div><div class="info"><div class="name">L'invaincu</div><div class="crit">Gagne 5 duels d'affilée sans en perdre un</div></div></div>
-      <div class="hof-card"><div class="em">🎯</div><div class="info"><div class="name">Le sniper</div><div class="crit">Gagne un duel avec moins de 5 points d'écart</div></div></div>
-      <div class="hof-card"><div class="em">⚔️</div><div class="info"><div class="name">Le challenger</div><div class="crit">Joue 50 duels au total</div></div></div>
-      <div class="hof-card"><div class="em">🔁</div><div class="info"><div class="name">Le revenchard</div><div class="crit">Bats un joueur qui t'avait battu auparavant</div></div></div>
-      <div class="hof-card legendary"><div class="em">🪨</div><div class="info"><div class="name">David vs Goliath</div><div class="crit">Battu un user du top 10 mensuel en duel</div></div></div>
-      <div class="hof-card epic"><div class="em">🔄</div><div class="info"><div class="name">Le retournement</div><div class="crit">Comeback en duel : remonté un adversaire menant</div></div></div>
-      <div class="hof-card"><div class="em">🗡️</div><div class="info"><div class="name">Le coup de grâce</div><div class="crit">Gagné un duel avec 5+ pts d'écart en 2 dernières min</div></div></div>
-    </div>
-  </div>
-
-  <!-- Social -->
-  <div class="hof-cat">
-    <div class="hof-cat-head"><span class="hof-cat-icon">🤝</span><span class="hof-cat-name">Social</span><span class="hof-cat-count">8 TITRES</span></div>
-    <div class="hof-grid">
-      <div class="hof-card epic"><div class="em">🤝</div><div class="info"><div class="name">L'ambassadeur</div><div class="crit">Réussis 5 parrainages (filleuls qui ont posté)</div></div></div>
-      <div class="hof-card"><div class="em">🌟</div><div class="info"><div class="name">Le populaire</div><div class="crit">Atteins 100 followers</div></div></div>
-      <div class="hof-card epic"><div class="em">💎</div><div class="info"><div class="name">L'influenceur</div><div class="crit">Atteins 500 followers</div></div></div>
-      <div class="hof-card"><div class="em">❤️</div><div class="info"><div class="name">Le généreux</div><div class="crit">Distribue 500 likes au total</div></div></div>
-      <div class="hof-card"><div class="em">💬</div><div class="info"><div class="name">Le commentateur</div><div class="crit">Écris 100 commentaires au total</div></div></div>
-      <div class="hof-card"><div class="em">🌸</div><div class="info"><div class="name">Le bienveillant</div><div class="crit">Distribue 50 votes créativité au total</div></div></div>
-      <div class="hof-card epic"><div class="em">🧙</div><div class="info"><div class="name">Le mentor</div><div class="crit">Un de tes filleuls atteint le top 100 mensuel</div></div></div>
-      <div class="hof-card epic"><div class="em">📈</div><div class="info"><div class="name">Star montante</div><div class="crit">50 nouveaux followers en 7 jours</div></div></div>
-    </div>
-  </div>
-
-  <!-- Format -->
-  <div class="hof-cat">
-    <div class="hof-cat-head"><span class="hof-cat-icon">🎬</span><span class="hof-cat-name">Format</span><span class="hof-cat-count">5 TITRES</span></div>
-    <div class="hof-grid">
-      <div class="hof-card"><div class="em">🎥</div><div class="info"><div class="name">Le cinéaste</div><div class="crit">Poste 50 défis vidéo au total</div></div></div>
-      <div class="hof-card"><div class="em">📷</div><div class="info"><div class="name">Le photographe</div><div class="crit">Poste 100 défis photo au total</div></div></div>
-      <div class="hof-card"><div class="em">🎧</div><div class="info"><div class="name">Le DJ</div><div class="crit">Poste 30 défis audio au total</div></div></div>
-      <div class="hof-card epic"><div class="em">🦎</div><div class="info"><div class="name">Le caméléon</div><div class="crit">Poste 20 défis dans chaque format (photo, vidéo, audio)</div></div></div>
-      <div class="hof-card"><div class="em">🎁</div><div class="info"><div class="name">Le bonus hunter</div><div class="crit">Complète 30 défis bonus au total</div></div></div>
-    </div>
-  </div>
-
-  <!-- Spéciaux -->
-  <div class="hof-cat">
-    <div class="hof-cat-head"><span class="hof-cat-icon">✨</span><span class="hof-cat-name">Spéciaux</span><span class="hof-cat-count">6 TITRES</span></div>
-    <div class="hof-grid">
-      <div class="hof-card epic"><div class="em">🎓</div><div class="info"><div class="name">Le savant</div><div class="crit">Reçois 200 votes créativité sur tes posts</div></div></div>
-      <div class="hof-card mythic"><div class="em">♾️</div><div class="info"><div class="name">L'éternel</div><div class="crit">Connecte-toi tous les jours pendant 1 an</div></div></div>
-      <div class="hof-card legendary"><div class="em">❤️‍🔥</div><div class="info"><div class="name">Coup de cœur</div><div class="crit">Ton post sélectionné par l'équipe DayDo</div></div></div>
-      <div class="hof-card legendary"><div class="em">✨</div><div class="info"><div class="name">Featured</div><div class="crit">Ton post mis en avant dans Découverte</div></div></div>
-      <div class="hof-card epic"><div class="em">🛡️</div><div class="info"><div class="name">Liké par un architect</div><div class="crit">Un membre de l'équipe DayDo a liké ton post</div></div></div>
-      <div class="hof-card legendary"><div class="em">🎭</div><div class="info"><div class="name">Coup de cœur communautaire</div><div class="crit">Top vote créativité d'un défi communautaire</div></div></div>
-    </div>
-  </div>
-
-  <!-- Viraux -->
-  <div class="hof-cat">
-    <div class="hof-cat-head"><span class="hof-cat-icon">🌪️</span><span class="hof-cat-name">Viraux</span><span class="hof-cat-count">11 TITRES</span></div>
-    <div class="hof-grid">
-      <div class="hof-card legendary"><div class="em">⚡</div><div class="info"><div class="name">Le tonnerre</div><div class="crit">100 likes en 5 minutes sur un post</div></div></div>
-      <div class="hof-card mythic"><div class="em">🚀</div><div class="info"><div class="name">500 likes en 24h</div><div class="crit">500 likes reçus en 24h sur un seul post</div></div></div>
-      <div class="hof-card mythic"><div class="em">💥</div><div class="info"><div class="name">1000 likes en 24h</div><div class="crit">1000 likes reçus en 24h sur un seul post</div></div></div>
-      <div class="hof-card mythic"><div class="em">🌪️</div><div class="info"><div class="name">Viral instantané</div><div class="crit">1000 vues sur un post en moins de 30 min</div></div></div>
-      <div class="hof-card mythic"><div class="em">💖</div><div class="info"><div class="name">Saturé de cœurs</div><div class="crit">50% des actifs DayDo ont liké un de tes posts</div></div></div>
-      <div class="hof-card mythic"><div class="em">💬</div><div class="info"><div class="name">Marathon</div><div class="crit">100 commentaires ou plus sur un même post</div></div></div>
-      <div class="hof-card epic"><div class="em">🎨</div><div class="info"><div class="name">Unanime</div><div class="crit">20 votes créativité ou plus sur un même post</div></div></div>
-      <div class="hof-card legendary"><div class="em">🌟</div><div class="info"><div class="name">Post du jour</div><div class="crit">Post le plus liké de la journée (toutes catégories)</div></div></div>
-      <div class="hof-card mythic"><div class="em">👑</div><div class="info"><div class="name">Post du mois</div><div class="crit">Post le plus liké du mois entier</div></div></div>
-      <div class="hof-card epic"><div class="em">🥇</div><div class="info"><div class="name">Post du défi</div><div class="crit">Post le plus liké d'un défi spécifique</div></div></div>
-      <div class="hof-card epic"><div class="em">🌠</div><div class="info"><div class="name">Bombe du week-end</div><div class="crit">Post le plus liké d'un samedi/dimanche</div></div></div>
-    </div>
-  </div>
-
-  <!-- Légendaires -->
-  <div class="hof-cat">
-    <div class="hof-cat-head"><span class="hof-cat-icon">🐉</span><span class="hof-cat-name">Légendaires (mythiques)</span><span class="hof-cat-count">11 TITRES</span></div>
-    <div class="hof-grid">
-      <div class="hof-card mythic"><div class="em">🔮</div><div class="info"><div class="name">L'Oracle</div><div class="crit">Termine top 1 deux mois consécutifs</div></div></div>
-      <div class="hof-card mythic"><div class="em">🔥</div><div class="info"><div class="name">Le Phénix</div><div class="crit">Sors du top 1000 puis remonte top 10 le mois suivant</div></div></div>
-      <div class="hof-card mythic"><div class="em">⚡</div><div class="info"><div class="name">Le Titan</div><div class="crit">Cumule 4000 points en un seul mois</div></div></div>
-      <div class="hof-card mythic"><div class="em">🗡️</div><div class="info"><div class="name">L'Hégémon</div><div class="crit">Gagne 50 duels au total</div></div></div>
-      <div class="hof-card mythic"><div class="em">🐉</div><div class="info"><div class="name">Légende vivante</div><div class="crit">365 jours consécutifs sans rater une journée</div></div></div>
-      <div class="hof-card mythic"><div class="em">🦁</div><div class="info"><div class="name">Le Sphinx</div><div class="crit">Cumule 10 000 likes reçus à vie</div></div></div>
-      <div class="hof-card mythic"><div class="em">🐲</div><div class="info"><div class="name">Le Mythique</div><div class="crit">Poste 1000 défis à vie</div></div></div>
-      <div class="hof-card mythic"><div class="em">👁️</div><div class="info"><div class="name">Le Visionnaire</div><div class="crit">Termine top 10 sur 3 mois consécutifs</div></div></div>
-      <div class="hof-card mythic"><div class="em">🪄</div><div class="info"><div class="name">L'Archimage</div><div class="crit">Complète tous les défis d'un mois entier sans en rater</div></div></div>
-      <div class="hof-card mythic"><div class="em">👑</div><div class="info"><div class="name">Le Suzerain</div><div class="crit">Gagne 100 duels au total</div></div></div>
-      <div class="hof-card mythic"><div class="em">👑</div><div class="info"><div class="name">Triple couronne</div><div class="crit">Top 1 sur 3 mois consécutifs</div></div></div>
-    </div>
-  </div>
-
-  <!-- Mensuels (collapsed list) -->
-  <div class="hof-cat">
-    <div class="hof-cat-head"><span class="hof-cat-icon">🏆</span><span class="hof-cat-name">Champions mensuels</span><span class="hof-cat-count">36+ TITRES</span></div>
-    <div style="background:rgba(99,102,241,0.06);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center">
-      <div style="font-size:36px;margin-bottom:10px">🥇 🥈 🥉</div>
-      <div style="font-weight:800;font-size:15px;margin-bottom:6px">Champion / Vice-champion / Bronze de chaque mois</div>
-      <div style="font-size:13px;color:var(--text-2);line-height:1.5;max-width:520px;margin:0 auto">Top 1, 2 et 3 du classement mensuel décrochent leur titre éternel. Avril 2026 → avril 2027 disponibles, et chaque nouveau mois ajoute 3 titres uniques.</div>
-    </div>
-  </div>
-
-  <!-- Prestige -->
-  <div class="hof-cat">
-    <div class="hof-cat-head"><span class="hof-cat-icon">💎</span><span class="hof-cat-name">Prestige permanent</span><span class="hof-cat-count">3 TITRES</span></div>
-    <div class="hof-grid">
-      <div class="hof-card epic"><div class="em">🔝</div><div class="info"><div class="name">Top 10</div><div class="crit">Finir un mois dans le top 10 du classement</div></div></div>
-      <div class="hof-card"><div class="em">🧪</div><div class="info"><div class="name">Bêta tester</div><div class="crit">Inscrit avant le 3 mai 2026 (lancement Oono)</div></div></div>
-      <div class="hof-card epic"><div class="em">🍎</div><div class="info"><div class="name">Pionnier App Store</div><div class="crit">Inscrit avant le 6 avril 2026 (sortie App Store)</div></div></div>
+  <div class="hof-cta-wrap">
+    <div class="hof-cta-count">👑 <strong>+ 61 autres titres</strong> à découvrir</div>
+    <div>
+      <a class="btn btn-primary" href="#download">Télécharger pour les voir tous →</a>
     </div>
   </div>
 </section>
+
 
 <!-- CTA -->
 <section class="cta" id="download">
