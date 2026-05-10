@@ -28,7 +28,7 @@ ul{list-style:disc;padding-left:20px;margin-bottom:12px}
 <div class="wrap">
 <a href="/" class="back">← Retour à DayDo</a>
 <h1>Politique de Confidentialité</h1>
-<div class="meta">📅 Dernière mise à jour : 28 avril 2026</div>
+<div class="meta">📅 Dernière mise à jour : 10 mai 2026</div>
 
 <h2>1. Présentation</h2>
 <p>DayDo est une application mobile de défis quotidiens créatifs permettant aux utilisateurs de partager des photos, vidéos et enregistrements audio, d'interagir avec une communauté, et de participer à un classement mensuel.</p>
@@ -69,6 +69,7 @@ ul{list-style:disc;padding-left:20px;margin-bottom:12px}
 <li>Identifiant de session (pour la gestion session unique)</li>
 <li>Token de notification push (Expo Push)</li>
 <li>Logs de connexion</li>
+<li>Région géographique approximative (pays + région administrative, jamais la ville ni l'adresse précise) déduite de l'adresse IP au moment de la publication d'un contenu, sans stockage de l'IP brute</li>
 </ul>
 
 <h2>3. Finalités du traitement</h2>
@@ -83,7 +84,7 @@ ul{list-style:disc;padding-left:20px;margin-bottom:12px}
 <li>Modérer automatiquement le contenu publié (détection de contenus inappropriés)</li>
 <li>Assurer la sécurité et prévenir les abus (détection multi-comptes, triche)</li>
 <li>Améliorer l'Application</li>
-<li>Utilisation anonymisée et agrégée des photos et vidéos publiques à des fins d'études de marché et de sondages (voir section 7 bis)</li>
+<li>Alimenter, sous une forme strictement anonymisée et agrégée en masse, un observatoire des tendances visuelles dont les rapports peuvent être commercialisés à des marques, instituts d'études ou organismes de recherche, sans jamais transmettre de donnée individuelle (voir section 7 bis)</li>
 </ul>
 
 <h2>4. Modération automatique du contenu</h2>
@@ -99,52 +100,129 @@ ul{list-style:disc;padding-left:20px;margin-bottom:12px}
 <li><strong>Intérêt légitime</strong> : pour la sécurité, la prévention des abus et l'amélioration du service</li>
 </ul>
 
-<h2>6. Hébergement principal</h2>
-<p>La base de données, l'authentification et les fichiers médias (photos, vidéos, audios) sont hébergés par <strong>Supabase</strong> sur l'infrastructure Amazon Web Services, dans une région européenne (Irlande, UE). Ces serveurs sont soumis au droit européen et à la réglementation RGPD.</p>
+<h2>6. Hébergement principal — souverain français</h2>
+<div class="highlight">
+<p>L'infrastructure principale de DayDo est hébergée en <strong>France, sur Clever Cloud</strong>, opérateur cloud souverain français basé à Paris et Nantes. Cette infrastructure est soumise <strong>exclusivement au droit français et européen</strong>. Aucun transfert hors Union européenne n'est effectué pour ces traitements.</p>
+</div>
+
+<p>Clever Cloud héberge :</p>
+<ul>
+<li>La <strong>base de données PostgreSQL</strong> principale (profils, publications, interactions, classement, points, duels, messages privés, signalements, données de jeu)</li>
+<li>Le <strong>serveur applicatif</strong> daydo-backend (API métier, validations, transcodage vidéo en HLS adaptatif via FFmpeg, génération de miniatures)</li>
+<li>Le <strong>stockage des fichiers médias</strong> publiés (photos, vidéos, audios) sur <strong>Cellar</strong>, service de stockage S3 souverain de Clever Cloud, hébergé en France</li>
+</ul>
+
+<p>L'authentification (inscription, connexion, sessions, mots de passe chiffrés) est, elle, gérée par un service distinct (Supabase, Irlande UE — voir section 7). Aucun contenu utilisateur n'est stocké chez l'opérateur d'authentification.</p>
 
 <h2>7. Sous-traitants et transferts des données</h2>
-<p>Pour fournir le service DayDo, nous faisons appel aux sous-traitants qualifiés listés ci-dessous, chacun dans le cadre strict de sa mission. Tous ont signé un accord de traitement des données (DPA) conforme au RGPD.</p>
+<p>Pour fournir le service DayDo, nous faisons appel aux sous-traitants qualifiés listés ci-dessous, chacun dans le cadre strict de sa mission. Tous ont signé un accord de traitement des données (DPA) conforme au RGPD. <strong>L'ordre ci-dessous reflète la criticité décroissante du traitement des données utilisateurs.</strong></p>
 
+<h3>7.1 Hébergement principal — souverain UE</h3>
 <ul>
-<li><strong>Supabase</strong> (Irlande, UE) — base de données, authentification, stockage fichiers. Droit européen directement applicable.</li>
-<li><strong>Cloudflare</strong> (Europe + États-Unis) — hébergement du site daydo.app (Pages), protection anti-bot au signup (Turnstile), hébergement et diffusion des vidéos (Stream), DNS. Transfert hors UE encadré par les clauses contractuelles types de la Commission européenne et le DPA Cloudflare.</li>
-<li><strong>SightEngine</strong> (Europe + États-Unis) — modération automatique des photos et vidéos publiées, avec suppression immédiate après analyse (<code>do_not_store=1</code>). Transfert hors UE encadré par les clauses contractuelles types.</li>
-<li><strong>PostHog</strong> (Francfort, Allemagne — UE) — analyse d'usage de l'application (retention, parcours utilisateur, détection de bugs produit) avec identifiants pseudonymisés. Droit européen directement applicable.</li>
-<li><strong>Brevo</strong> (France, UE) — envoi des emails transactionnels (confirmation d'inscription, réinitialisation de mot de passe, notifications importantes). Droit européen directement applicable.</li>
-<li><strong>Sentry</strong> (États-Unis) — détection et analyse des erreurs techniques dans l'application. Transfert encadré par les clauses contractuelles types.</li>
-<li><strong>Expo</strong> (États-Unis) — envoi des notifications push iOS et Android. Transfert encadré par les clauses contractuelles types.</li>
-<li><strong>Apple App Store & Google Play Store</strong> (États-Unis) — distribution de l'application. Transfert encadré par les clauses contractuelles types.</li>
+<li><strong>Clever Cloud</strong> (Paris &amp; Nantes, France 🇫🇷) — Hébergement principal souverain. Stocke et traite la base de données PostgreSQL, le serveur applicatif (API), le stockage Cellar (fichiers médias des publications), le transcodage vidéo (FFmpeg). <em>Droit français et européen exclusivement, aucun transfert hors UE.</em></li>
+<li><strong>Supabase</strong> (Dublin, Irlande 🇮🇪 — UE) — <strong>Uniquement</strong> service d'authentification : gestion des inscriptions, des connexions, des sessions, des mots de passe chiffrés (bcrypt) et des tokens JWT. <strong>Aucune donnée applicative</strong> (publication, message, interaction, classement) n'est stockée chez Supabase. <em>Droit européen directement applicable.</em></li>
 </ul>
+
+<h3>7.2 Outils de support — UE et hors UE</h3>
+<ul>
+<li><strong>Cloudflare</strong> (Europe + États-Unis) — <strong>Strictement limité à</strong> :
+  <ul>
+    <li>Serveur DNS du domaine daydo.app</li>
+    <li>Hébergement statique du site web vitrine daydo.app (Cloudflare Pages, fichiers HTML/CSS/JS publics, sans donnée utilisateur)</li>
+    <li>Protection anti-bot au formulaire d'inscription (Cloudflare Turnstile, alternative au reCAPTCHA, valide un token de non-robot sans collecte de donnée personnelle)</li>
+  </ul>
+  <strong>Aucun fichier média (photo, vidéo, audio), aucune donnée utilisateur applicative, aucun contenu de publication ne transite ni n'est stocké sur Cloudflare.</strong> Le service de streaming vidéo Cloudflare Stream, précédemment utilisé, a été <strong>retiré au profit de l'infrastructure souveraine Clever Cloud (Cellar + FFmpeg)</strong>. Transfert hors UE encadré par les clauses contractuelles types de la Commission européenne et le DPA Cloudflare.
+</li>
+<li><strong>SightEngine</strong> (Paris, France 🇫🇷 — siège ; Europe + États-Unis pour l'infrastructure technique) — Modération automatique des photos et vidéos publiées (détection de nudité, violence, armes, etc.). Les médias sont analysés avec le paramètre <code>do_not_store=1</code> qui force la suppression immédiate après analyse chez le prestataire. Aucune image ni vidéo n'est conservée côté SightEngine.</li>
+<li><strong>PostHog</strong> (Francfort, Allemagne 🇩🇪 — UE) — Analyse d'usage de l'application (retention, parcours utilisateur, détection de bugs produit) avec identifiants pseudonymisés (UUID anonyme, jamais de pseudo ni d'e-mail). <em>Droit européen directement applicable.</em> Aucune donnée publicitaire collectée, aucun partage avec des tiers.</li>
+<li><strong>Brevo (ex-Sendinblue)</strong> (Paris, France 🇫🇷 — UE) — Envoi des emails transactionnels (confirmation d'inscription, réinitialisation de mot de passe, notifications importantes). <em>Droit français et européen directement applicable.</em></li>
+<li><strong>DB-IP</strong> (Bruxelles, Belgique 🇧🇪 — UE, prévu) — Base de données géographique IP (région/pays uniquement) utilisée localement sur les serveurs Clever Cloud pour déduire la région approximative depuis l'adresse IP. <strong>Aucune adresse IP n'est transmise à DB-IP</strong> : la base de données est téléchargée et interrogée localement. <em>Droit européen directement applicable.</em></li>
+<li><strong>Sentry</strong> (San Francisco, États-Unis 🇺🇸) — Détection et analyse des erreurs techniques dans l'application (stack traces, contexte technique). Aucun contenu utilisateur n'est volontairement transmis. Transfert encadré par les clauses contractuelles types.</li>
+<li><strong>Expo (EAS Push)</strong> (Palo Alto, États-Unis 🇺🇸) — Envoi des notifications push iOS et Android. Le contenu de la notification (titre, corps) transite par Expo et Apple/Google. Transfert encadré par les clauses contractuelles types.</li>
+<li><strong>Apple App Store &amp; Google Play Store</strong> (États-Unis 🇺🇸) — Distribution de l'application mobile. Transfert encadré par les clauses contractuelles types.</li>
+</ul>
+
+<div class="highlight">
+<p><strong>Politique de souveraineté</strong> : DayDo privilégie en permanence les solutions françaises et européennes pour l'hébergement et le traitement des données utilisateurs. Les services hors UE listés ci-dessus (Sentry, Expo, Apple, Google) sont utilisés uniquement lorsqu'aucune alternative souveraine équivalente n'existe à ce jour, et toujours pour des fonctionnalités annexes (jamais pour le stockage principal des données utilisateurs).</p>
+</div>
 
 <div class="highlight">
 <p>DayDo <strong>ne vend, ne loue ni ne cède aucune donnée personnelle identifiante</strong> (e-mail, téléphone, nom, messages privés, enregistrements audio, photo de profil) à des tiers. Seules les photos et vidéos publiques des défis, sous forme <strong>anonymisée et agrégée</strong>, peuvent alimenter des rapports statistiques destinés à des organismes d'études (voir section 7 bis). Les données peuvent aussi être transmises à une autorité compétente uniquement sur réquisition légale ou pour protéger les droits, la propriété ou la sécurité de DayDo et de ses utilisateurs.</p>
 </div>
 
-<h2>7 bis. Utilisation anonymisée pour études et sondages</h2>
-<p>Les <strong>photos et vidéos</strong> que vous publiez dans le cadre des défis peuvent être utilisées sous forme <strong>anonymisée et agrégée</strong> à des fins d'études de marché et de sondages par des organismes tiers (instituts de sondage, agences d'études, marques partenaires).</p>
+<h2>7 bis. Observatoire des tendances visuelles — études anonymisées et agrégées</h2>
 
-<h3>Ce qui peut être utilisé</h3>
+<div class="highlight">
+<p><strong>En une phrase</strong> : les publications publiques de DayDo peuvent alimenter, <strong>uniquement sous une forme strictement anonymisée et agrégée à grande échelle</strong>, un observatoire des tendances visuelles dont les rapports peuvent être commercialisés sous forme d'études de marché. <strong>Aucune donnée individuelle, aucun contenu identifiable, aucun profil utilisateur n'est jamais transmis ou vendu.</strong></p>
+</div>
+
+<h3>De quoi s'agit-il ?</h3>
+<p>DayDo développe un <strong>observatoire des tendances</strong> qui analyse <strong>en masse</strong> les publications publiques (photos et vidéos partagées dans les défis quotidiens) afin d'en dégager des indicateurs statistiques globaux : objets visuellement détectés, ambiances, couleurs dominantes, marques reconnues, saisonnalité, évolution dans le temps.</p>
+
+<p>Ces indicateurs sont <strong>comptabilisés à l'échelle de la communauté entière</strong> (plusieurs centaines à plusieurs milliers de publications par cellule statistique), jamais à l'échelle d'un utilisateur précis. Ils peuvent ensuite être commercialisés sous forme <strong>d'études de marché et de rapports de tendances</strong> auprès :</p>
 <ul>
-<li>Photos et vidéos publiques publiées dans les défis</li>
-<li>Métadonnées non nominatives (date, tranche horaire, tranche d'âge déclarée, genre déclaré)</li>
-<li>Nombre de likes et de commentaires reçus (pas leur contenu)</li>
+<li>de marques (pour mesurer leur présence visuelle dans les usages)</li>
+<li>d'instituts de sondage et agences d'études</li>
+<li>d'organismes de recherche (universités, laboratoires)</li>
+<li>de médias et observatoires culturels</li>
 </ul>
 
-<h3>Ce qui n'est JAMAIS partagé ni utilisé à ces fins</h3>
+<p><strong>Ce modèle est ce qui permet à DayDo de rester gratuit, sans publicité, sans tracking comportemental, et sans revente de donnée personnelle individuelle.</strong></p>
+
+<h3>Exemples de ce qui peut figurer dans un rapport</h3>
 <ul>
-<li>❌ Enregistrements audio et voix</li>
-<li>❌ Adresse e-mail, numéro de téléphone, nom réel</li>
-<li>❌ Contenu des messages privés (chat)</li>
-<li>❌ Photo de profil ou avatar</li>
-<li>❌ Géolocalisation précise</li>
-<li>❌ Mots de passe ou identifiants d'authentification</li>
+<li>« Sur le mois de juin 2026, les boissons sucrées sont apparues dans 12 % des publications, en hausse de 4 points par rapport à mai. »</li>
+<li>« 43 % des participants au défi du week-end ont publié une photo contenant des éléments d'extérieur. »</li>
+<li>« La marque X a été détectée visuellement dans 2 300 publications en France ce trimestre, principalement sur la tranche 18-24 ans. »</li>
 </ul>
 
-<p>Les rapports produits contiennent uniquement des statistiques groupées. <strong>Aucune donnée permettant de vous identifier personnellement n'est transmise.</strong> Exemple : « 43 % des participants du défi ont publié une photo contenant des fruits » — sans jamais mentionner ni un utilisateur, ni un contenu précis.</p>
+<h3>Ce qui ne figurera JAMAIS dans un rapport ni ne sera transmis à un tiers</h3>
+<ul>
+<li>❌ Aucune photo, vidéo ou audio en tant que tel (jamais de fichier média transmis)</li>
+<li>❌ Le nom, le pseudo, l'e-mail, l'avatar ou tout identifiant d'un utilisateur</li>
+<li>❌ Le contenu d'une publication individuelle attribuée à quelqu'un de précis</li>
+<li>❌ Le contenu textuel : commentaires, légendes, messages privés</li>
+<li>❌ Les enregistrements audio et la voix</li>
+<li>❌ La géolocalisation précise (ville, adresse, IP brute)</li>
+<li>❌ Le genre, le niveau d'études, la profession, la situation familiale (jamais collectés par DayDo)</li>
+<li>❌ Les mots de passe, tokens, identifiants d'authentification</li>
+<li>❌ Tout parcours comportemental individualisé d'un utilisateur précis</li>
+</ul>
 
-<p><strong>Base légale</strong> : intérêt légitime (article 6.1.f du RGPD), modèle économique soutenant la gratuité du service, équilibré par l'anonymisation et votre droit d'opposition.</p>
+<h3>Données traitées en masse pour produire les statistiques</h3>
+<ul>
+<li><strong>Éléments visuels détectés</strong> dans les photos et vidéos publiques par un système d'analyse d'image automatisé (objets, marques, ambiances, couleurs)</li>
+<li><strong>Tranche d'âge</strong> de l'utilisateur (déduite de la date de naissance déclarée à l'inscription)</li>
+<li><strong>Région géographique</strong> approximative (pays + région administrative, par exemple « Île-de-France » ou « Occitanie » — jamais la ville, jamais l'adresse, jamais l'IP brute)</li>
+<li><strong>Date / mois / saison</strong> de la publication</li>
+<li><strong>Volume d'engagement agrégé</strong> (nombre total de likes ou commentaires reçus, sans contenu)</li>
+</ul>
 
-<p><strong>Droit d'opposition</strong> : vous pouvez vous opposer à tout moment à cette utilisation en nous contactant à <a href="mailto:contact@daydo.app">contact@daydo.app</a>. Votre demande sera traitée sous 30 jours maximum.</p>
+<h3>Garanties d'anonymisation</h3>
+<ul>
+<li><strong>Seuil minimum de regroupement</strong> : aucune statistique n'est diffusée pour une cellule contenant moins de <strong>50 utilisateurs</strong> distincts. Les cellules trop fines sont fusionnées ou supprimées du rapport.</li>
+<li><strong>Pas de jointure inverse</strong> : les rapports diffusés sont structurellement non rattachables à un utilisateur identifié.</li>
+<li><strong>Aucun fichier média original ni copie</strong> n'est transmis aux clients de l'observatoire — uniquement des chiffres agrégés.</li>
+<li><strong>Production interne</strong> : tous les rapports sont produits en interne par DayDo avant diffusion. Aucun tiers commercial n'a accès aux données brutes ni à la base de données.</li>
+<li><strong>Adresse IP non stockée</strong> : seule la région déduite est conservée, l'IP brute est jetée immédiatement après dérivation.</li>
+</ul>
+
+<h3>Base légale et droit d'opposition</h3>
+<p><strong>Base légale</strong> : intérêt légitime (article 6.1.f RGPD). Notre intérêt légitime à produire ces études tient au modèle économique qui maintient l'application gratuite, sans publicité et sans revente de donnée individuelle. Cet intérêt est équilibré par :</p>
+<ul>
+<li>L'anonymisation stricte des données traitées</li>
+<li>Le seuil minimum de regroupement (≥ 50 utilisateurs)</li>
+<li>L'absence totale de transmission de contenu individuel</li>
+<li>Votre droit d'opposition immédiat et sans condition (voir ci-dessous)</li>
+</ul>
+<p>Une analyse d'impact sur la vie privée (LIA — Legitimate Interest Assessment) documente cette balance et est tenue à disposition de la CNIL en cas de contrôle.</p>
+
+<p><strong>Droit d'opposition</strong> : vous pouvez vous opposer à tout moment et sans avoir à justifier votre demande à l'utilisation de vos publications dans l'observatoire :</p>
+<ul>
+<li>Depuis l'application : <strong>Paramètres → Confidentialité → « Contribuer aux statistiques agrégées »</strong> (toggle). Désactivable à tout moment.</li>
+<li>Par e-mail : <a href="mailto:contact@daydo.app">contact@daydo.app</a> — traité immédiatement, au plus tard sous 30 jours.</li>
+</ul>
+<p>L'opposition empêche immédiatement toute analyse future de vos publications dans le cadre de l'observatoire. Les rapports déjà produits sur des données agrégées antérieures, qui ne permettent par construction pas votre identification, ne sont pas retraités.</p>
 
 <h2>8. Durée de conservation</h2>
 <ul>
@@ -188,13 +266,16 @@ ul{list-style:disc;padding-left:20px;margin-bottom:12px}
 
 <h2>12. Sécurité des données</h2>
 <ul>
-<li>Chiffrement des mots de passe (bcrypt)</li>
-<li>Connexions sécurisées (HTTPS/TLS)</li>
-<li>Authentification par JWT (JSON Web Token)</li>
-<li>Règles de sécurité au niveau de la base de données (Row Level Security)</li>
-<li>Validation des actions sensibles côté serveur (edge functions)</li>
-<li>Gestion de session unique par appareil</li>
-<li>Accès aux données restreint aux seuls services nécessaires</li>
+<li>Chiffrement des mots de passe (bcrypt) géré par le service d'authentification</li>
+<li>Connexions chiffrées de bout en bout (HTTPS/TLS sur toutes les communications client ↔ serveur)</li>
+<li>Authentification par JWT (JSON Web Token) signé, à durée de vie limitée</li>
+<li>Vérification systématique de l'identité de l'utilisateur côté serveur applicatif avant toute écriture en base de données (filtrage par <code>user_id</code> dérivé du JWT validé)</li>
+<li>Validation des actions sensibles (transferts de points, duels, achats de bonus) par des procédures stockées en base, avec contrôles anti-abus en bloc atomique</li>
+<li>Gestion de session unique par appareil avec invalidation automatique sur changement</li>
+<li>Hébergement de la base de données et des fichiers utilisateurs en France sur Clever Cloud (souverain UE)</li>
+<li>Sauvegardes automatisées chiffrées de la base de données</li>
+<li>Accès au système de production restreint au seul administrateur de DayDo</li>
+<li>Outils de modération automatique (SightEngine, <code>do_not_store=1</code>) pour bloquer les contenus inappropriés à la publication</li>
 </ul>
 
 <h2>13. Mineurs</h2>
