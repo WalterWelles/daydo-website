@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
+# Bloque les faux 404 (Supabase REST endpoints faussement crawlés sur daydo.app)
+Disallow: /rest/
 Sitemap: https://daydo.app/sitemap.xml
