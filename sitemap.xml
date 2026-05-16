@@ -3,13 +3,16 @@
   <url>
     <loc>https://daydo.app/</loc>
     <priority>1.0</priority>
+    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://daydo.app/ranking.html</loc>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://daydo.app/faq.html</loc>
     <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
   </url>
 </urlset>

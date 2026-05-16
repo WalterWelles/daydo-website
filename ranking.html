@@ -4,8 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://daydo.app/ranking.html" />
-<title>DayDo — Classement du mois</title>
-<meta name="description" content="Classement mensuel DayDo. Participe au défi du jour pour monter dans le classement.">
+<title>Classement DayDo · Top 50 du mois — Défi créatif quotidien</title>
+<meta name="description" content="Classement mensuel des meilleurs joueurs DayDo. Un défi créatif chaque jour (photo, vidéo, audio). Participe pour grimper dans le top.">
+<meta name="keywords" content="DayDo, classement, défi quotidien, leaderboard, photo, vidéo, audio, créativité, app">
+<meta property="og:title" content="Classement DayDo · Top 50 du mois">
+<meta property="og:description" content="Découvre le classement mensuel DayDo. Un défi créatif chaque jour pour grimper dans le top.">
+<meta property="og:image" content="https://daydo.app/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://daydo.app/ranking.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Classement DayDo · Top 50 du mois">
+<meta name="twitter:description" content="Découvre le classement mensuel DayDo.">
+<meta name="twitter:image" content="https://daydo.app/og-image.png">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -18,24 +28,39 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:fl
 .nav-logo span{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;background:var(--accent);font-size:13px}
 .nav-cta{padding:8px 20px;border-radius:10px;background:var(--accent);font-weight:700;font-size:13px;color:#fff}
 
-.wrap{max-width:600px;margin:0 auto;padding:100px 20px 80px}
-h1{font-size:32px;font-weight:900;letter-spacing:-0.5px;text-align:center;margin-bottom:8px}
-.sub{text-align:center;color:var(--text3);font-size:14px;margin-bottom:32px}
+.wrap{max-width:680px;margin:0 auto;padding:100px 20px 80px}
+
+/* Défi du jour bloc */
+.daily{background:linear-gradient(135deg, rgba(245,158,11,0.12), rgba(99,102,241,0.08));border:1px solid rgba(245,158,11,0.3);border-radius:20px;padding:24px;margin-bottom:32px;position:relative;overflow:hidden}
+.daily-label{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:#F59E0B;letter-spacing:1px;margin-bottom:10px;text-transform:uppercase}
+.daily-pulse{width:8px;height:8px;border-radius:50%;background:#F59E0B;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.2)}}
+.daily-title{font-size:22px;font-weight:900;letter-spacing:-0.3px;margin-bottom:8px;line-height:1.25}
+.daily-desc{font-size:14px;color:var(--text2);line-height:1.55;margin-bottom:16px}
+.daily-points{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.daily-pt{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:5px 10px}
+.daily-cta{display:inline-flex;align-items:center;gap:6px;padding:11px 22px;border-radius:12px;background:#F59E0B;color:#0a0514;font-weight:800;font-size:14px;transition:transform 0.2s}
+.daily-cta:hover{transform:translateY(-2px)}
+.daily-skeleton{height:80px;background:rgba(255,255,255,0.03);border-radius:12px;animation:skeleton 1.5s ease-in-out infinite}
+@keyframes skeleton{0%,100%{opacity:0.5}50%{opacity:0.8}}
+
+h1{font-size:28px;font-weight:900;letter-spacing:-0.5px;text-align:center;margin-bottom:6px}
+.sub{text-align:center;color:var(--text3);font-size:13px;margin-bottom:28px;text-transform:uppercase;letter-spacing:0.8px}
 
 .podium{display:flex;gap:10px;margin-bottom:24px;justify-content:center;align-items:flex-end}
-.podium-card{text-align:center;border-radius:16px;border:1px solid var(--border);padding:16px 12px;flex:1;max-width:160px;transition:transform 0.3s}
+.podium-card{text-align:center;border-radius:16px;border:1px solid var(--border);padding:16px 12px;flex:1;max-width:170px;transition:transform 0.3s}
 .podium-card.first{background:rgba(99,102,241,0.08);border-color:rgba(99,102,241,0.2);transform:translateY(-8px)}
 .podium-medal{font-size:28px;margin-bottom:6px}
-.podium-avatar{width:44px;height:44px;border-radius:14px;background:var(--surface2);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-weight:800;font-size:16px;color:var(--text)}
+.podium-avatar{width:48px;height:48px;border-radius:14px;background:var(--surface2);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-weight:800;font-size:17px;color:var(--text)}
 .podium-card.first .podium-avatar{background:var(--accent);color:#fff}
-.podium-name{font-weight:700;font-size:13px;margin-bottom:2px}
+.podium-name{font-weight:700;font-size:13px;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .podium-pts{font-weight:800;font-size:14px;color:var(--accent-light)}
 .podium-card:not(.first) .podium-pts{color:var(--text3)}
 
 .list{display:flex;flex-direction:column;gap:0}
 .row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border);transition:background 0.2s}
 .row:hover{background:rgba(255,255,255,0.02)}
-.row-rank{width:28px;font-weight:700;font-size:14px;color:var(--text3);text-align:center;flex-shrink:0}
+.row-rank{width:32px;font-weight:700;font-size:14px;color:var(--text3);text-align:center;flex-shrink:0}
 .row-avatar{width:36px;height:36px;border-radius:12px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
 .row-info{flex:1;min-width:0}
 .row-name{font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -57,6 +82,17 @@ h1{font-size:32px;font-weight:900;letter-spacing:-0.5px;text-align:center;margin
 footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-size:12px;color:var(--text3)}
 footer a{color:var(--text3)}footer a:hover{color:var(--text2)}
 </style>
+
+<!-- Schema.org pour rich snippets Google -->
+<script type="application/ld+json" id="schema-itemlist">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Classement DayDo",
+  "description": "Top des joueurs DayDo du mois en cours",
+  "itemListElement": []
+}
+</script>
 </head>
 <body>
 
@@ -66,6 +102,22 @@ footer a{color:var(--text3)}footer a:hover{color:var(--text2)}
 </nav>
 
 <div class="wrap">
+
+  <!-- Défi du jour -->
+  <div class="daily" id="daily">
+    <div class="daily-label">
+      <span class="daily-pulse"></span>
+      <span>Défi du jour · <span id="daily-date"></span></span>
+    </div>
+    <div class="daily-skeleton" id="daily-skeleton"></div>
+    <div id="daily-content" style="display:none">
+      <h2 class="daily-title" id="daily-title">—</h2>
+      <p class="daily-desc" id="daily-desc"></p>
+      <div class="daily-points" id="daily-points"></div>
+      <a href="daydo://challenge" class="daily-cta">📱 Participer maintenant</a>
+    </div>
+  </div>
+
   <h1>🏆 Classement</h1>
   <p class="sub" id="period">Mois en cours</p>
 
@@ -98,9 +150,27 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const MEDALS = {1:'🥇',2:'🥈',3:'🥉'};
 
+async function loadDailyChallenge() {
+  try {
+    const { data, error } = await sb.rpc('get_daily_challenge');
+    if (error || !data?.length) return;
+    const c = data[0];
+    document.getElementById('daily-title').textContent = c.title || 'Défi du jour';
+    document.getElementById('daily-desc').textContent = c.description || '';
+    const pts = [];
+    if (c.photo_points) pts.push(`<div class="daily-pt">📷 ${c.photo_points} pts</div>`);
+    if (c.video_points) pts.push(`<div class="daily-pt">🎥 ${c.video_points} pts</div>`);
+    if (c.audio_points) pts.push(`<div class="daily-pt">🎤 ${c.audio_points} pts</div>`);
+    document.getElementById('daily-points').innerHTML = pts.join('');
+    document.getElementById('daily-skeleton').style.display = 'none';
+    document.getElementById('daily-content').style.display = 'block';
+  } catch (e) { console.warn('daily error', e); }
+}
+
 async function loadRanking() {
   try {
-    const { data, error } = await sb.rpc('get_monthly_ranking', { limit_count: 50 });
+    // RPC anonymisée — pas d'avatars dans le payload (privacy)
+    const { data, error } = await sb.rpc('get_monthly_ranking_public', { limit_count: 50 });
     if (error) throw error;
     if (!data || data.length === 0) {
       document.getElementById('loading').style.display = 'none';
@@ -118,6 +188,7 @@ async function loadRanking() {
     }));
     renderPodium(players.slice(0, 3));
     renderList(players);
+    updateSchema(players);
     document.getElementById('loading').style.display = 'none';
   } catch (e) {
     document.getElementById('loading').textContent = 'Erreur de chargement. Rafraîchis la page.';
@@ -154,10 +225,36 @@ function renderList(players) {
   `).join('');
 }
 
+function updateSchema(players) {
+  const schemaEl = document.getElementById('schema-itemlist');
+  if (!schemaEl) return;
+  const items = players.slice(0, 10).map(p => ({
+    "@type": "ListItem",
+    "position": p.rank,
+    "name": p.handle,
+    "description": `${p.points} pts · 🔥 ${p.streak}j`,
+  }));
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Classement DayDo",
+    "description": "Top des joueurs DayDo du mois en cours",
+    "numberOfItems": players.length,
+    "itemListElement": items,
+  };
+  schemaEl.textContent = JSON.stringify(schema);
+}
+
 const months = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
 const now = new Date();
 document.getElementById('period').textContent = months[now.getMonth()] + ' ' + now.getFullYear();
+document.getElementById('daily-date').textContent = now.getDate() + ' ' + months[now.getMonth()].toLowerCase() + ' ' + now.getFullYear();
+
+loadDailyChallenge();
 loadRanking();
+// Polling pour rester à jour si le défi change pendant la session
+setInterval(loadDailyChallenge, 60000);
+setInterval(loadRanking, 60000);
 </script>
 
 </body>
