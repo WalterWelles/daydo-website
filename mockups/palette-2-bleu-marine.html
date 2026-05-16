@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Palette 2 — Bleu marine fintech</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d1117; --surface:#161b22; --surface2:#21262d;
+  --border:rgba(255,255,255,0.08); --border-strong:rgba(88,166,255,0.25);
+  --text:#F0F6FC; --text-2:#8B949E; --text-3:#6E7681;
+  --accent:#58A6FF; --accent-2:#10B981; --highlight:#F0883E;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+.banner{position:fixed;top:0;left:0;right:0;background:var(--accent);color:#0d1117;text-align:center;padding:8px;font-size:12px;font-weight:700;z-index:200}
+.nav{position:sticky;top:32px;backdrop-filter:blur(20px);background:rgba(13,17,23,0.85);border-bottom:1px solid var(--border);z-index:100;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;letter-spacing:-0.5px}
+.logo-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900}
+.nav-links{display:flex;gap:28px;font-size:13px;color:var(--text-2);font-weight:500}
+.nav-cta{padding:10px 20px;border-radius:8px;background:var(--accent);color:#0d1117;font-weight:700;font-size:13px}
+.hero{padding:60px 28px;max-width:1200px;margin:32px auto 0;display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:100px;background:rgba(16,185,129,0.10);border:1px solid rgba(16,185,129,0.25);font-size:11px;font-weight:700;color:var(--accent-2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent-2)}
+.daily-banner{display:flex;align-items:flex-start;gap:14px;padding:18px 22px;border-radius:14px;background:var(--surface);border:1px solid rgba(240,136,62,0.3);margin-bottom:28px;max-width:560px}
+.daily-banner-icon{font-size:22px}
+.daily-banner-label{font-size:10px;font-weight:800;color:var(--highlight);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:6px}
+.daily-banner-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:4px}
+.daily-banner-desc{font-size:13px;color:var(--text-2);line-height:1.5}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:64px;font-weight:800;line-height:1;letter-spacing:-2.5px;margin-bottom:20px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:18px;color:var(--text-2);line-height:1.6;max-width:480px;margin-bottom:32px}
+.hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:16px 28px;border-radius:10px;font-weight:700;font-size:14px;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--accent);color:#0d1117}
+.btn-secondary{background:transparent;color:var(--text);border-color:var(--border-strong)}
+.leaderboard{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px}
+.lb-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.lb-title{font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--text-2)}
+.lb-live{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--accent-2);font-weight:700}
+.lb-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent-2)}
+.lb-row{display:flex;align-items:center;gap:14px;padding:12px 8px;border-radius:10px}
+.lb-rank{font-family:'Space Grotesk',monospace;font-weight:800;font-size:18px;width:32px;color:var(--text-3)}
+.lb-rank.r1{color:var(--highlight);font-size:20px}
+.lb-rank.r2{color:var(--accent)}.lb-rank.r3{color:var(--text-2)}
+.lb-avatar{width:32px;height:32px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:var(--accent)}
+.lb-info{flex:1;min-width:0}.lb-name{font-weight:700;font-size:13px}.lb-sub{font-size:11px;color:var(--text-3)}
+.lb-pts{font-weight:800;font-size:14px;color:var(--accent)}
+</style></head><body>
+<div class="banner">PALETTE 2 · BLEU MARINE FINTECH — Sérieux tech</div>
+<nav class="nav"><div class="logo"><div class="logo-mark">D</div>DayDo</div><div class="nav-links"><a>Bonus</a><a>Boost</a><a>Titres</a><a>FAQ</a></div><a class="nav-cta">Télécharger</a></nav>
+<section class="hero">
+  <div>
+    <div class="hero-tag">● Live · 470 utilisateurs</div>
+    <div class="daily-banner">
+      <div class="daily-banner-icon">🔥</div>
+      <div>
+        <div class="daily-banner-label">Défi du jour · 16 mai</div>
+        <div class="daily-banner-title">Quelle est ta contradiction préférée ?</div>
+        <div class="daily-banner-desc">On a tous nos petites contradictions. Montre-nous la tienne…</div>
+      </div>
+    </div>
+    <h1>Un défi.<br>Chaque jour.<br><em>Une vraie compétition.</em></h1>
+    <p>Photo, vidéo, audio. Likes, commentaires, duels, créativité. Le réseau social qui récompense l'effort.</p>
+    <div class="hero-buttons"><button class="btn btn-primary">📱 Télécharger l'app</button><button class="btn btn-secondary">Voir les bonus →</button></div>
+  </div>
+  <div class="leaderboard">
+    <div class="lb-head"><div class="lb-title">🏆 Classement de mai</div><div class="lb-live">LIVE</div></div>
+    <div class="lb-row"><div class="lb-rank r1">1</div><div class="lb-avatar">BO</div><div class="lb-info"><div class="lb-name">@Borathor</div><div class="lb-sub">3213 pts · 🔥 16j</div></div></div>
+    <div class="lb-row"><div class="lb-rank r2">2</div><div class="lb-avatar">MA</div><div class="lb-info"><div class="lb-name">@mali_cats</div><div class="lb-sub">3155 pts · 🔥 15j</div></div></div>
+    <div class="lb-row"><div class="lb-rank r3">3</div><div class="lb-avatar">AL</div><div class="lb-info"><div class="lb-name">@Aliel</div><div class="lb-sub">3152 pts · 🔥 3j</div></div></div>
+    <div class="lb-row"><div class="lb-rank">4</div><div class="lb-avatar">EN</div><div class="lb-info"><div class="lb-name">@enzo4pk</div><div class="lb-sub">3138 pts · 🔥 15j</div></div></div>
+    <div class="lb-row"><div class="lb-rank">5</div><div class="lb-avatar">CL</div><div class="lb-info"><div class="lb-name">@claire</div><div class="lb-sub">3135 pts · 🔥 15j</div></div></div>
+  </div>
+</section>
+</body></html>
