@@ -203,7 +203,11 @@ html,body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;
 .cta p{font-size:18px;color:var(--text-2);margin-bottom:36px}
 
 /* ── Footer ── */
-footer{padding:40px 28px;border-top:1px solid var(--border);text-align:center;color:var(--text-3);font-size:13px}
+footer{padding:40px 28px 24px;border-top:1px solid var(--border);text-align:center;color:var(--text-3);font-size:13px}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-bottom:18px}
+.footer-links a{color:var(--text-3);text-decoration:none;font-size:13px;padding:4px 0;border-bottom:1px solid transparent;transition:border-color .15s,color .15s}
+.footer-links a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.footer-copy{font-size:12px;color:var(--text-3);margin-top:6px}
 
 @media (max-width:880px){
   .hero{grid-template-columns:1fr}
@@ -465,7 +469,18 @@ footer{padding:40px 28px;border-top:1px solid var(--border);text-align:center;co
   </div>
 </section>
 
-<footer>© 2026 DayDo · Conçu pour le grind, pas la popularité.</footer>
+<footer>
+  <div class="footer-links">
+    <a href="/faq.html">FAQ</a>
+    <a href="/terms.html">Conditions générales</a>
+    <a href="/privacy.html">Politique de confidentialité</a>
+    <a href="/reglement-concours.html">Règlement du concours</a>
+    <a href="/child-safety.html">Sécurité des mineurs</a>
+    <a href="/delete-account.html">Supprimer mon compte</a>
+    <a href="mailto:contact@daydo.app">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 DayDo · Conçu pour le grind, pas la popularité.</div>
+</footer>
 
 <script>
 function updateBoost(){
